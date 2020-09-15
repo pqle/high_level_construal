@@ -1,3 +1,6 @@
 # macOS resource files
 .DS_Store
 
+# PsychoPy data folder
+data/
+
