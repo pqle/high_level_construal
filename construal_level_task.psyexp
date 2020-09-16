@@ -96,7 +96,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="5" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="set every repeat" val="$attention_check_text" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$&quot;How likely would you engage in this action &quot; + $attention_check_text" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -126,7 +126,7 @@
       </TextComponent>
       <RatingScaleComponent name="attention_check_rating">
         <Param name="categoryChoices" updates="constant" val="" valType="str"/>
-        <Param name="customize_everything" updates="constant" val="choices = ['not at all often','somewhat often','moderately often','very often','extremely often'], stretch=2.0, textSize=0.5, showAccept=False, maxTime=4.9, respKeys=['1','2','3','4','5']" valType="str"/>
+        <Param name="customize_everything" updates="constant" val="choices = ['not at all often','somewhat often','moderately often','very often','extremely often'], stretch=2.0, textSize=0.5, showAccept=False, disappear=True, maxTime=4.9, respKeys=['1','2','3','4','5']" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="disappear" updates="constant" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
@@ -177,7 +177,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="1.0" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="set every repeat" val="$cue_text" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$&quot;Please imagine the next events occurring &quot; + cue_text" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -203,7 +203,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="1.0" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="set every repeat" val="$cue_text" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$&quot;Please imagine the next events occurring &quot; + cue_text" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -241,7 +241,7 @@
         <Param name="flip" updates="constant" val="" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
         <Param name="name" updates="None" val="block2_text" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
@@ -253,7 +253,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="10" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="$block2" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$block2" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -265,7 +265,7 @@
         <Param name="flip" updates="constant" val="" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
         <Param name="name" updates="None" val="block3_text" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
@@ -277,7 +277,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="10.0" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="$block3" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$block3" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -309,7 +309,7 @@
       </TextComponent>
       <RatingScaleComponent name="quitting_intention_rating">
         <Param name="categoryChoices" updates="constant" val="" valType="str"/>
-        <Param name="customize_everything" updates="constant" val="choices = ['encourage a great deal','encourage a little','neither encourage nor discourage','discourage a little','discourage a great deal'], stretch=2.0, textSize=0.5, showAccept=False, maxTime=4.9, respKeys=['1','2','3','4','5']" valType="str"/>
+        <Param name="customize_everything" updates="constant" val="choices = ['encourage a great deal','encourage a little','neither encourage nor discourage','discourage a little','discourage a great deal'], stretch=2.0, textSize=0.5, showAccept=False, disappear=True, maxTime=4.9, respKeys=['1','2','3','4','5']" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="disappear" updates="constant" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
