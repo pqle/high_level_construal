@@ -1,9 +1,9 @@
 condition_type,scenario_file,cue_text,attention_check_text
-present,present_scenario_conditions.csv,Please imagine the next events occurring RIGHT NOW,How likely would you engage in this action right now?
-present,present_scenario_conditions.csv,Please imagine the next events occurring RIGHT NOW,How likely would you engage in this action right now?
-present,present_scenario_conditions.csv,Please imagine the next events occurring RIGHT NOW,How likely would you engage in this action right now?
-present,present_scenario_conditions.csv,Please imagine the next events occurring RIGHT NOW,How likely would you engage in this action right now?
-future,future_scenario_conditions.csv,Please imagine the next events occurring FIVE YEARS FROM NOW,How likely would you engage in this action five years from now?
-future,future_scenario_conditions.csv,Please imagine the next events occurring FIVE YEARS FROM NOW,How likely would you engage in this action five years from now?
-future,future_scenario_conditions.csv,Please imagine the next events occurring FIVE YEARS FROM NOW,How likely would you engage in this action five years from now?
-future,future_scenario_conditions.csv,Please imagine the next events occurring FIVE YEARS FROM NOW,How likely would you engage in this action five years from now?
+present,present_scenario_conditions.csv,RIGHT NOW,right now?
+present,present_scenario_conditions.csv,RIGHT NOW,right now?
+present,present_scenario_conditions.csv,RIGHT NOW,right now?
+present,present_scenario_conditions.csv,RIGHT NOW,right now?
+future,future_scenario_conditions.csv,FIVE YEARS FROM NOW,five years from now?
+future,future_scenario_conditions.csv,FIVE YEARS FROM NOW,five years from now?
+future,future_scenario_conditions.csv,FIVE YEARS FROM NOW,five years from now?
+future,future_scenario_conditions.csv,FIVE YEARS FROM NOW,five years from now?
