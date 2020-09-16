@@ -12,14 +12,15 @@ This task is used in the Rethink Smoking study.
 
 ## How to run the task
 
-The task is run using PsychoPy.
+The task is run using [PsychoPy](https://www.psychopy.org/).
 
 ## Task description
 
-The task consists of 8 blocks of `present` actions and scenarios or `future `actions and scenarios, randomized. In each block, introduction text is displayed for 20s. The introduction text is
+The task consists of 8 blocks of `present` actions and scenarios or `future` actions and scenarios, randomized.
+First, introduction text is displayed for 20s. The introduction text is
 ```
 ```
-Next a cue is presented for 1s. In the `present` condition, the cue is
+Then in each block, a cue is presented for 1s. In the `present` condition, the cue is
 ```
 Please imagine the next events occurring RIGHT NOW
 ```
@@ -50,4 +51,4 @@ encourage a great deal - encourage a little - neither encourage nor discourage -
 
 
 ## Developer documentation
-Created using PsychoPy v2020.1.2
+Created using [PsychoPy v2020.1.2](https://www.psychopy.org/)
