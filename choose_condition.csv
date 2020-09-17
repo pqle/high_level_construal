@@ -1,9 +1,9 @@
-condition_type,scenario_file,cue_text,attention_check_text
-present,present_scenario_conditions.csv,RIGHT NOW,right now?
-present,present_scenario_conditions.csv,RIGHT NOW,right now?
-present,present_scenario_conditions.csv,RIGHT NOW,right now?
-present,present_scenario_conditions.csv,RIGHT NOW,right now?
-future,future_scenario_conditions.csv,FIVE YEARS FROM NOW,five years from now?
-future,future_scenario_conditions.csv,FIVE YEARS FROM NOW,five years from now?
-future,future_scenario_conditions.csv,FIVE YEARS FROM NOW,five years from now?
-future,future_scenario_conditions.csv,FIVE YEARS FROM NOW,five years from now?
+condition_type,scenario_file,cue_text
+present,present_scenario_conditions.csv,RIGHT NOW
+present,present_scenario_conditions.csv,RIGHT NOW
+present,present_scenario_conditions.csv,RIGHT NOW
+present,present_scenario_conditions.csv,RIGHT NOW
+future,future_scenario_conditions.csv,FIVE YEARS FROM NOW
+future,future_scenario_conditions.csv,FIVE YEARS FROM NOW
+future,future_scenario_conditions.csv,FIVE YEARS FROM NOW
+future,future_scenario_conditions.csv,FIVE YEARS FROM NOW
