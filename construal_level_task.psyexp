@@ -145,7 +145,7 @@
       </TextComponent>
       <RatingScaleComponent name="attention_check_rating">
         <Param name="categoryChoices" updates="constant" val="" valType="str"/>
-        <Param name="customize_everything" updates="constant" val="choices = ['not at all often','somewhat often','moderately often','very often','extremely often'], stretch=2.0, textSize=1, showAccept=False, disappear=True, maxTime=4.9, respKeys=['1','2','3','4','5']" valType="str"/>
+        <Param name="customize_everything" updates="constant" val="choices = ['not at all\noften','somewhat\noften','moderately\noften','very\noften','extremely\noften'], stretch=2.0, textSize=1, showAccept=False, disappear=True, maxTime=4.9, respKeys=['1','2','3','4','5']" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="disappear" updates="constant" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
