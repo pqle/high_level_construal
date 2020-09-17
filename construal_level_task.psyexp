@@ -145,7 +145,7 @@
       </TextComponent>
       <RatingScaleComponent name="attention_check_rating">
         <Param name="categoryChoices" updates="constant" val="" valType="str"/>
-        <Param name="customize_everything" updates="constant" val="choices = ['not at all often','somewhat often','moderately often','very often','extremely often'], stretch=2.0, textSize=0.5, showAccept=False, disappear=True, maxTime=4.9, respKeys=['1','2','3','4','5']" valType="str"/>
+        <Param name="customize_everything" updates="constant" val="choices = ['not at all often','somewhat often','moderately often','very often','extremely often'], stretch=2.0, textSize=1, showAccept=False, disappear=True, maxTime=4.9, respKeys=['1','2','3','4','5']" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="disappear" updates="constant" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
@@ -228,6 +228,23 @@
       </TextComponent>
     </Routine>
     <Routine name="quitting_intention">
+      <CodeComponent name="quitting_intention_code">
+        <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="if ((condition_type === &quot;present&quot;)) {&amp;#10;    quitting_intention_str = &quot;Consider the thoughts that would go through your mind if you were in this situation right now.\n\nTo what extent do these thoughts encourage or discourage you to smoke?&quot;;&amp;#10;} else {&amp;#10;    quitting_intention_str = &quot;Consider the thoughts that would go through your mind if you are in this situation five years from now.\n\nTo what extent do these thoughts encourage or discourage you to smoke?&quot;;&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="if condition_type == 'present':&amp;#10;    quitting_intention_str = 'Consider the thoughts that would go through your mind if you were in this situation right now.\n\nTo what extent do these thoughts encourage or discourage you to smoke?'&amp;#10;else:&amp;#10;    quitting_intention_str = 'Consider the thoughts that would go through your mind if you are in this situation five years from now.\n\nTo what extent do these thoughts encourage or discourage you to smoke?'" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="quitting_intention_code" valType="code"/>
+      </CodeComponent>
       <TextComponent name="quitting_intention_text">
         <Param name="color" updates="constant" val="white" valType="str"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
@@ -240,7 +257,7 @@
         <Param name="name" updates="None" val="quitting_intention_text" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0.2)" valType="code"/>
         <Param name="saveStartStop" updates="None" val="False" valType="bool"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
@@ -248,13 +265,13 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="5" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="To what extent do these thoughts encourage or discourage you to smoke?" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$quitting_intention_str" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
       <RatingScaleComponent name="quitting_intention_rating">
         <Param name="categoryChoices" updates="constant" val="" valType="str"/>
-        <Param name="customize_everything" updates="constant" val="choices = ['encourage a great deal','encourage a little','neither encourage nor discourage','discourage a little','discourage a great deal'], stretch=2.0, textSize=0.5, showAccept=False, disappear=True, maxTime=4.9, respKeys=['1','2','3','4','5']" valType="str"/>
+        <Param name="customize_everything" updates="constant" val="choices = ['encourage\na great deal','encourage\na little','neither encourage\nnor discourage','discourage\na little','discourage\na great deal'], stretch=2.0, textSize=1, showAccept=False, disappear=True, maxTime=4.9, respKeys=['1','2','3','4','5']" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="disappear" updates="constant" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
@@ -422,7 +439,7 @@
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
     <LoopInitiator loopType="TrialHandler" name="scenario_trials">
-      <Param name="Selected rows" updates="None" val="2" valType="str"/>
+      <Param name="Selected rows" updates="None" val="$random(1)*15" valType="str"/>
       <Param name="conditions" updates="None" val="None" valType="str"/>
       <Param name="conditionsFile" updates="None" val="$scenario_file" valType="str"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
