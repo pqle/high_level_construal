@@ -86,8 +86,8 @@
         <Param name="Begin JS Routine" updates="constant" val="if ((condition_type === &quot;present&quot;)) {&amp;#10;    attention_check_text = &quot;How often do you currently engage in this action?&quot;;&amp;#10;} else {&amp;#10;    attention_check_text = &quot;How likely would you engage in this action five years from now?&quot;;&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="if condition_type == 'present':&amp;#10;    attention_check_text = 'How often do you currently engage in this action?'&amp;#10;else:&amp;#10;    attention_check_text = 'How likely would you engage in this action five years from now?'" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
-        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="# Update marker position and slider rating&amp;#10;# when there are keypresses of the 1, 2, 3, 4, 5 buttons&amp;#10;rating_keys = ['1', '2', '3', '4', '5']&amp;#10;if attention_check_keyboard.keys in rating_keys:&amp;#10;    attention_check_rating.markerPos = int(attention_check_keyboard.keys)&amp;#10;    # confirm rating by setting to current markerPos&amp;#10;    attention_check_rating.rating = attention_check_rating.markerPos&amp;#10;" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="var _pj;&amp;#10;function _pj_snippets(container) {&amp;#10;    function in_es6(left, right) {&amp;#10;        if (((right instanceof Array) || ((typeof right) === &quot;string&quot;))) {&amp;#10;            return (right.indexOf(left) &gt; (- 1));&amp;#10;        } else {&amp;#10;            if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {&amp;#10;                return right.has(left);&amp;#10;            } else {&amp;#10;                return (left in right);&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;    container[&quot;in_es6&quot;] = in_es6;&amp;#10;    return container;&amp;#10;}&amp;#10;_pj = {};&amp;#10;_pj_snippets(_pj);&amp;#10;rating_keys = [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;];&amp;#10;if (_pj.in_es6(attention_check_keyboard.keys, rating_keys)) {&amp;#10;    attention_check_rating.markerPos = Number.parseInt(attention_check_keyboard.keys);&amp;#10;    attention_check_rating.rating = attention_check_rating.markerPos;&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
@@ -143,37 +143,53 @@
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
-      <RatingScaleComponent name="attention_check_rating">
-        <Param name="categoryChoices" updates="constant" val="" valType="str"/>
-        <Param name="customize_everything" updates="constant" val="choices = ['not at all\noften','somewhat\noften','moderately\noften','very\noften','extremely\noften'], stretch=2.0, textSize=1, showAccept=False, disappear=True, maxTime=4.9, respKeys=['1','2','3','4','5']" valType="str"/>
+      <SliderComponent name="attention_check_rating">
+        <Param name="color" updates="constant" val="LightGray" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="disappear" updates="constant" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
-        <Param name="high" updates="constant" val="7" valType="code"/>
-        <Param name="labels" updates="constant" val="" valType="str"/>
-        <Param name="low" updates="constant" val="1" valType="code"/>
-        <Param name="marker" updates="constant" val="triangle" valType="str"/>
-        <Param name="markerStart" updates="constant" val="" valType="str"/>
+        <Param name="flip" updates="constant" val="False" valType="bool"/>
+        <Param name="font" updates="constant" val="HelveticaBold" valType="str"/>
+        <Param name="forceEndRoutine" updates="constant" val="False" valType="bool"/>
+        <Param name="granularity" updates="constant" val="0" valType="code"/>
+        <Param name="labels" updates="constant" val="['not at all\noften','somewhat\noften','moderately\noften','very\noften','extremely\noften']" valType="list"/>
         <Param name="name" updates="None" val="attention_check_rating" valType="code"/>
-        <Param name="pos" updates="constant" val="0, -0.4" valType="str"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -0.3)" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
-        <Param name="scaleDescription" updates="constant" val="" valType="str"/>
-        <Param name="showAccept" updates="constant" val="True" valType="bool"/>
-        <Param name="singleClick" updates="constant" val="False" valType="bool"/>
-        <Param name="size" updates="constant" val="1.0" valType="code"/>
+        <Param name="size" updates="constant" val="(1.0, 0.025)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
-        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="5" valType="code"/>
         <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
         <Param name="storeRating" updates="constant" val="True" valType="bool"/>
         <Param name="storeRatingTime" updates="constant" val="True" valType="bool"/>
-        <Param name="syncScreenRefresh" updates="None" val="False" valType="bool"/>
-        <Param name="tickHeight" updates="constant" val="" valType="str"/>
-        <Param name="visualAnalogScale" updates="constant" val="False" valType="bool"/>
-      </RatingScaleComponent>
+        <Param name="styles" updates="constant" val="('triangleMarker',)" valType="fixedList"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="ticks" updates="constant" val="(1, 2, 3, 4, 5)" valType="list"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+      </SliderComponent>
+      <KeyboardComponent name="attention_check_keyboard">
+        <Param name="allowedKeys" updates="constant" val="'1', '2', '3', '4', '5'" valType="code"/>
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="attention_check_keyboard" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="5" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
     </Routine>
     <Routine name="cue">
       <TextComponent name="cue_str">
@@ -236,8 +252,8 @@
         <Param name="Begin JS Routine" updates="constant" val="if ((condition_type === &quot;present&quot;)) {&amp;#10;    quitting_intention_str = &quot;Consider the thoughts that would go through your mind if you were in this situation right now.\n\nTo what extent do these thoughts encourage or discourage you to smoke?&quot;;&amp;#10;} else {&amp;#10;    quitting_intention_str = &quot;Consider the thoughts that would go through your mind if you are in this situation five years from now.\n\nTo what extent do these thoughts encourage or discourage you to smoke?&quot;;&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="if condition_type == 'present':&amp;#10;    quitting_intention_str = 'Consider the thoughts that would go through your mind if you were in this situation right now.\n\nTo what extent do these thoughts encourage or discourage you to smoke?'&amp;#10;else:&amp;#10;    quitting_intention_str = 'Consider the thoughts that would go through your mind if you are in this situation five years from now.\n\nTo what extent do these thoughts encourage or discourage you to smoke?'" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
-        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="# Update marker position and slider rating&amp;#10;# when there are keypresses of the 1, 2, 3, 4, 5 buttons&amp;#10;rating_keys = ['1', '2', '3', '4', '5']&amp;#10;if quitting_intention_keyboard.keys in rating_keys:&amp;#10;    quitting_intention_rating.markerPos = int(quitting_intention_keyboard.keys)&amp;#10;    # confirm rating by setting to current markerPos&amp;#10;    quitting_intention_rating.rating = quitting_intention_rating.markerPos&amp;#10;" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="var _pj;&amp;#10;function _pj_snippets(container) {&amp;#10;    function in_es6(left, right) {&amp;#10;        if (((right instanceof Array) || ((typeof right) === &quot;string&quot;))) {&amp;#10;            return (right.indexOf(left) &gt; (- 1));&amp;#10;        } else {&amp;#10;            if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {&amp;#10;                return right.has(left);&amp;#10;            } else {&amp;#10;                return (left in right);&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;    container[&quot;in_es6&quot;] = in_es6;&amp;#10;    return container;&amp;#10;}&amp;#10;_pj = {};&amp;#10;_pj_snippets(_pj);&amp;#10;rating_keys = [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;];&amp;#10;if (_pj.in_es6(quitting_intention_keyboard.keys, rating_keys)) {&amp;#10;    quitting_intention_rating.markerPos = Number.parseInt(quitting_intention_keyboard.keys);&amp;#10;    quitting_intention_rating.rating = quitting_intention_rating.markerPos;&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
@@ -269,25 +285,22 @@
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
-      <RatingScaleComponent name="quitting_intention_rating">
-        <Param name="categoryChoices" updates="constant" val="" valType="str"/>
-        <Param name="customize_everything" updates="constant" val="choices = ['encourage\na great deal','encourage\na little','neither encourage\nnor discourage','discourage\na little','discourage\na great deal'], stretch=2.0, textSize=1, showAccept=False, disappear=True, maxTime=4.9, respKeys=['1','2','3','4','5']" valType="str"/>
+      <SliderComponent name="quitting_intention_rating">
+        <Param name="color" updates="constant" val="LightGray" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="disappear" updates="constant" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="False" valType="bool"/>
+        <Param name="font" updates="constant" val="HelveticaBold" valType="str"/>
         <Param name="forceEndRoutine" updates="constant" val="False" valType="bool"/>
-        <Param name="high" updates="constant" val="" valType="code"/>
-        <Param name="labels" updates="constant" val="" valType="str"/>
-        <Param name="low" updates="constant" val="" valType="code"/>
-        <Param name="marker" updates="constant" val="" valType="str"/>
-        <Param name="markerStart" updates="constant" val="" valType="str"/>
+        <Param name="granularity" updates="constant" val="0" valType="code"/>
+        <Param name="labels" updates="constant" val="['encourage\na great deal','encourage\na little','neither encourage\nnor discourage','discourage\na little','discourage\na great deal']" valType="list"/>
         <Param name="name" updates="None" val="quitting_intention_rating" valType="code"/>
-        <Param name="pos" updates="constant" val="0, -0.4" valType="str"/>
-        <Param name="saveStartStop" updates="None" val="False" valType="bool"/>
-        <Param name="scaleDescription" updates="constant" val="" valType="str"/>
-        <Param name="showAccept" updates="constant" val="True" valType="bool"/>
-        <Param name="singleClick" updates="constant" val="True" valType="bool"/>
-        <Param name="size" updates="constant" val="1.0" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -0.3)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="size" updates="constant" val="(1.0, 0.025)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
@@ -296,10 +309,29 @@
         <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
         <Param name="storeRating" updates="constant" val="True" valType="bool"/>
         <Param name="storeRatingTime" updates="constant" val="True" valType="bool"/>
-        <Param name="syncScreenRefresh" updates="None" val="False" valType="bool"/>
-        <Param name="tickHeight" updates="constant" val="" valType="str"/>
-        <Param name="visualAnalogScale" updates="constant" val="False" valType="bool"/>
-      </RatingScaleComponent>
+        <Param name="styles" updates="constant" val="('triangleMarker',)" valType="fixedList"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="ticks" updates="constant" val="(1, 2, 3, 4, 5)" valType="list"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+      </SliderComponent>
+      <KeyboardComponent name="quitting_intention_keyboard">
+        <Param name="allowedKeys" updates="constant" val="'1', '2', '3', '4', '5'" valType="code"/>
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="quitting_intention_keyboard" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="5" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
     </Routine>
     <Routine name="scenario1">
       <TextComponent name="block1_text">
