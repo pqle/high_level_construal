@@ -40,7 +40,7 @@
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
-        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="font" updates="constant" val="Helvetica" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
         <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
         <Param name="name" updates="None" val="instruction_text" valType="code"/>
@@ -101,7 +101,7 @@
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
-        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="font" updates="constant" val="Helvetica" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
         <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
         <Param name="name" updates="None" val="action_text" valType="code"/>
@@ -125,7 +125,7 @@
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
-        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="font" updates="constant" val="Helvetica" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
         <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
         <Param name="name" updates="None" val="attention_check" valType="code"/>
@@ -167,7 +167,7 @@
         <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
         <Param name="storeRating" updates="constant" val="True" valType="bool"/>
         <Param name="storeRatingTime" updates="constant" val="True" valType="bool"/>
-        <Param name="styles" updates="constant" val="('triangleMarker',)" valType="fixedList"/>
+        <Param name="styles" updates="constant" val="['triangleMarker']" valType="fixedList"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
         <Param name="ticks" updates="constant" val="(1, 2, 3, 4, 5)" valType="list"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
@@ -198,7 +198,7 @@
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
-        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="font" updates="constant" val="Helvetica" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
         <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
         <Param name="name" updates="None" val="cue_str" valType="code"/>
@@ -224,7 +224,7 @@
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
-        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="font" updates="constant" val="Helvetica" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
         <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
         <Param name="name" updates="None" val="scenario_cue_text" valType="code"/>
@@ -267,7 +267,7 @@
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
-        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="font" updates="constant" val="Helvetica" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
         <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
         <Param name="name" updates="None" val="quitting_intention_text" valType="code"/>
@@ -309,7 +309,7 @@
         <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
         <Param name="storeRating" updates="constant" val="True" valType="bool"/>
         <Param name="storeRatingTime" updates="constant" val="True" valType="bool"/>
-        <Param name="styles" updates="constant" val="('triangleMarker',)" valType="fixedList"/>
+        <Param name="styles" updates="constant" val="['triangleMarker']" valType="fixedList"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
         <Param name="ticks" updates="constant" val="(1, 2, 3, 4, 5)" valType="list"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
@@ -340,7 +340,7 @@
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="10" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
-        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="font" updates="constant" val="Helvetica" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
         <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
         <Param name="name" updates="None" val="block1_text" valType="code"/>
@@ -381,7 +381,7 @@
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="10" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
-        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="font" updates="constant" val="Helvetica" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
         <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
         <Param name="name" updates="None" val="block2_text" valType="code"/>
@@ -422,7 +422,7 @@
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="10" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
-        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="font" updates="constant" val="Helvetica" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
         <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
         <Param name="name" updates="None" val="block3_text" valType="code"/>
