@@ -47,13 +47,6 @@ dialogCancelScheduler.add(quitPsychoJS, '', false);
 psychoJS.start({
   expName: expName,
   expInfo: expInfo,
-  resources: [
-    {name: 'action_conditions.csv', path: './resources/action_conditions.csv'},
-    {name: 'choose_condition.csv', path: './resources/choose_condition.csv'},
-    {name: 'future_scenario_conditions.csv', path: './resources/future_scenario_conditions.csv'},
-    {name: 'present_scenario_conditions.csv', path: './resources/present_scenario_conditions.csv'},
-    {name: 'lorem_ipsum.mp3', path: './resources/lorem_ipsum.mp3'},
-  ],
   });
 
 psychoJS.experimentLogger.setLevel(core.Logger.ServerLevel.DEBUG);
@@ -63,7 +56,7 @@ var frameDur;
 function updateInfo() {
   expInfo['date'] = util.MonotonicClock.getDateStr();  // add a simple timestamp
   expInfo['expName'] = expName;
-  expInfo['psychopyVersion'] = '2020.2.4';
+  expInfo['psychopyVersion'] = '2020.2.5';
   expInfo['OS'] = window.navigator.platform;
 
   // store frame rate of monitor if we can measure it successfully
@@ -163,10 +156,10 @@ function experimentInit() {
   attention_check_rating = new visual.Slider({
     win: psychoJS.window, name: 'attention_check_rating',
     size: [1.0, 0.025], pos: [0, (- 0.3)], units: 'height',
-    labels: ["not at all\noften", "somewhat\noften", "moderately\noften", "very\noften", "extremely\noften"], ticks: [1, 2, 3, 4, 5],
+    labels: ['not at all\noften', 'somewhat\noften', 'moderately\noften', 'very\noften', 'extremely\noften'], ticks: [1, 2, 3, 4, 5],
     granularity: 0, style: [visual.Slider.Style.TRIANGLE_MARKER],
     color: new util.Color('LightGray'), 
-    fontFamily: 'HelveticaBold', bold: true, italic: false, 
+    fontFamily: 'HelveticaBold', bold: true, italic: false, depth: -3, 
     flip: false,
   });
   
@@ -258,10 +251,10 @@ function experimentInit() {
   quitting_intention_rating = new visual.Slider({
     win: psychoJS.window, name: 'quitting_intention_rating',
     size: [1.0, 0.025], pos: [0, (- 0.3)], units: 'height',
-    labels: ["encourage\na great deal", "encourage\na little", "neither encourage\nnor discourage", "discourage\na little", "discourage\na great deal"], ticks: [1, 2, 3, 4, 5],
+    labels: ['encourage\na great deal', 'encourage\na little', 'neither encourage\nnor discourage', 'discourage\na little', 'discourage\na great deal'], ticks: [1, 2, 3, 4, 5],
     granularity: 0, style: [visual.Slider.Style.TRIANGLE_MARKER],
     color: new util.Color('LightGray'), 
-    fontFamily: 'HelveticaBold', bold: true, italic: false, 
+    fontFamily: 'HelveticaBold', bold: true, italic: false, depth: -2, 
     flip: false,
   });
   
@@ -299,8 +292,10 @@ function instructionsRoutineBegin(snapshot) {
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
        });
-    
-    return Scheduler.Event.NEXT;
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      return Scheduler.Event.NEXT;
+    }
   };
 }
 
@@ -326,7 +321,7 @@ function instructionsRoutineEachFrame(snapshot) {
     }
 
     frameRemains = 0.0 + 20 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (instruction_text.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+    if ((instruction_text.status === PsychoJS.Status.STARTED || instruction_text.status === PsychoJS.Status.FINISHED) && t >= frameRemains) {
       instruction_text.setAutoDraw(false);
     }
     
@@ -343,7 +338,7 @@ function instructionsRoutineEachFrame(snapshot) {
     }
 
     frameRemains = 0.0 + 20 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (key_resp.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+    if ((key_resp.status === PsychoJS.Status.STARTED || key_resp.status === PsychoJS.Status.FINISHED) && t >= frameRemains) {
       key_resp.status = PsychoJS.Status.FINISHED;
   }
 
@@ -435,7 +430,7 @@ function scenario_trialsLoopBegin(scenario_trialsLoopScheduler) {
     psychoJS: psychoJS,
     nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
     extraInfo: expInfo, originPath: undefined,
-    trialList: TrialHandler.importConditions(psychoJS.serverManager, scenario_file, Array.from({length: 1}, () => util.randint(0, 16))),
+    trialList: TrialHandler.importConditions(psychoJS.serverManager, scenario_file, util.randint(low=0, high=15, size=1)),
     seed: undefined, name: 'scenario_trials'
   });
   psychoJS.experiment.addLoop(scenario_trials); // add the loop to the experiment
@@ -479,7 +474,7 @@ function action_trialsLoopBegin(action_trialsLoopScheduler) {
     psychoJS: psychoJS,
     nReps: 1, method: TrialHandler.Method.RANDOM,
     extraInfo: expInfo, originPath: undefined,
-    trialList: TrialHandler.importConditions(psychoJS.serverManager, 'action_conditions.csv', Array.from({length: 3}, () => util.randint(0, 48))),
+    trialList: TrialHandler.importConditions(psychoJS.serverManager, 'action_conditions.csv', util.randint(low=0, high=47, size=3)),
     seed: undefined, name: 'action_trials'
   });
   psychoJS.experiment.addLoop(action_trials); // add the loop to the experiment
@@ -533,7 +528,7 @@ function cueRoutineBegin(snapshot) {
     frameN = -1;
     routineTimer.add(1.000000);
     // update component parameters for each repeat
-    cue_str.setText(("Please imagine the next events occurring " + cue_text));
+    cue_str.setText(('Please imagine the next events occurring ' + cue_text));
     // keep track of which components have finished
     cueComponents = [];
     cueComponents.push(cue_str);
@@ -542,8 +537,10 @@ function cueRoutineBegin(snapshot) {
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
        });
-    
-    return Scheduler.Event.NEXT;
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      return Scheduler.Event.NEXT;
+    }
   };
 }
 
@@ -567,7 +564,7 @@ function cueRoutineEachFrame(snapshot) {
     }
 
     frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (cue_str.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+    if ((cue_str.status === PsychoJS.Status.STARTED || cue_str.status === PsychoJS.Status.FINISHED) && t >= frameRemains) {
       cue_str.setAutoDraw(false);
     }
     // check for quit (typically the Esc key)
@@ -644,8 +641,10 @@ function actionRoutineBegin(snapshot) {
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
        });
-    
-    return Scheduler.Event.NEXT;
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      return Scheduler.Event.NEXT;
+    }
   };
 }
 
@@ -695,7 +694,7 @@ function actionRoutineEachFrame(snapshot) {
     }
 
     frameRemains = 0.0 + 5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (action_text.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+    if ((action_text.status === PsychoJS.Status.STARTED || action_text.status === PsychoJS.Status.FINISHED) && t >= frameRemains) {
       action_text.setAutoDraw(false);
     }
     
@@ -709,7 +708,7 @@ function actionRoutineEachFrame(snapshot) {
     }
 
     frameRemains = 0.0 + 5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (attention_check.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+    if ((attention_check.status === PsychoJS.Status.STARTED || attention_check.status === PsychoJS.Status.FINISHED) && t >= frameRemains) {
       attention_check.setAutoDraw(false);
     }
     
@@ -723,7 +722,7 @@ function actionRoutineEachFrame(snapshot) {
     }
 
     frameRemains = 0.0 + 5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (attention_check_rating.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+    if ((attention_check_rating.status === PsychoJS.Status.STARTED || attention_check_rating.status === PsychoJS.Status.FINISHED) && t >= frameRemains) {
       attention_check_rating.setAutoDraw(false);
     }
     
@@ -740,7 +739,7 @@ function actionRoutineEachFrame(snapshot) {
     }
 
     frameRemains = 0.0 + 5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (attention_check_keyboard.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+    if ((attention_check_keyboard.status === PsychoJS.Status.STARTED || attention_check_keyboard.status === PsychoJS.Status.FINISHED) && t >= frameRemains) {
       attention_check_keyboard.status = PsychoJS.Status.FINISHED;
   }
 
@@ -810,7 +809,7 @@ function scenario_cueRoutineBegin(snapshot) {
     frameN = -1;
     routineTimer.add(1.000000);
     // update component parameters for each repeat
-    scenario_cue_text.setText(("Please imagine the next events occurring " + cue_text));
+    scenario_cue_text.setText(('Please imagine the next events occurring ' + cue_text));
     // keep track of which components have finished
     scenario_cueComponents = [];
     scenario_cueComponents.push(scenario_cue_text);
@@ -819,8 +818,10 @@ function scenario_cueRoutineBegin(snapshot) {
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
        });
-    
-    return Scheduler.Event.NEXT;
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      return Scheduler.Event.NEXT;
+    }
   };
 }
 
@@ -844,7 +845,7 @@ function scenario_cueRoutineEachFrame(snapshot) {
     }
 
     frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (scenario_cue_text.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+    if ((scenario_cue_text.status === PsychoJS.Status.STARTED || scenario_cue_text.status === PsychoJS.Status.FINISHED) && t >= frameRemains) {
       scenario_cue_text.setAutoDraw(false);
     }
     // check for quit (typically the Esc key)
@@ -911,8 +912,10 @@ function scenario1RoutineBegin(snapshot) {
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
        });
-    
-    return Scheduler.Event.NEXT;
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      return Scheduler.Event.NEXT;
+    }
   };
 }
 
@@ -935,7 +938,7 @@ function scenario1RoutineEachFrame(snapshot) {
       block1_text.setAutoDraw(true);
     }
 
-    if (block1_text.status === PsychoJS.Status.STARTED && Boolean((block1_sound.status == FINISHED))) {
+    if ((block1_text.status === PsychoJS.Status.STARTED || block1_text.status === PsychoJS.Status.FINISHED) && Boolean((block1_sound.status == FINISHED))) {
       block1_text.setAutoDraw(false);
     }
     // start/stop block1_sound
@@ -1019,8 +1022,10 @@ function scenario2RoutineBegin(snapshot) {
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
        });
-    
-    return Scheduler.Event.NEXT;
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      return Scheduler.Event.NEXT;
+    }
   };
 }
 
@@ -1043,7 +1048,7 @@ function scenario2RoutineEachFrame(snapshot) {
       block2_text.setAutoDraw(true);
     }
 
-    if (block2_text.status === PsychoJS.Status.STARTED && Boolean((block2_sound.status == FINISHED))) {
+    if ((block2_text.status === PsychoJS.Status.STARTED || block2_text.status === PsychoJS.Status.FINISHED) && Boolean((block2_sound.status == FINISHED))) {
       block2_text.setAutoDraw(false);
     }
     // start/stop block2_sound
@@ -1127,8 +1132,10 @@ function scenario3RoutineBegin(snapshot) {
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
        });
-    
-    return Scheduler.Event.NEXT;
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      return Scheduler.Event.NEXT;
+    }
   };
 }
 
@@ -1151,7 +1158,7 @@ function scenario3RoutineEachFrame(snapshot) {
       block3_text.setAutoDraw(true);
     }
 
-    if (block3_text.status === PsychoJS.Status.STARTED && Boolean((block3_sound.status == FINISHED))) {
+    if ((block3_text.status === PsychoJS.Status.STARTED || block3_text.status === PsychoJS.Status.FINISHED) && Boolean((block3_sound.status == FINISHED))) {
       block3_text.setAutoDraw(false);
     }
     // start/stop block3_sound
@@ -1243,8 +1250,10 @@ function quitting_intentionRoutineBegin(snapshot) {
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
        });
-    
-    return Scheduler.Event.NEXT;
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      return Scheduler.Event.NEXT;
+    }
   };
 }
 
@@ -1292,7 +1301,7 @@ function quitting_intentionRoutineEachFrame(snapshot) {
     }
 
     frameRemains = 0.0 + 5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (quitting_intention_text.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+    if ((quitting_intention_text.status === PsychoJS.Status.STARTED || quitting_intention_text.status === PsychoJS.Status.FINISHED) && t >= frameRemains) {
       quitting_intention_text.setAutoDraw(false);
     }
     
@@ -1306,7 +1315,7 @@ function quitting_intentionRoutineEachFrame(snapshot) {
     }
 
     frameRemains = 0.0 + 5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (quitting_intention_rating.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+    if ((quitting_intention_rating.status === PsychoJS.Status.STARTED || quitting_intention_rating.status === PsychoJS.Status.FINISHED) && t >= frameRemains) {
       quitting_intention_rating.setAutoDraw(false);
     }
     
@@ -1323,7 +1332,7 @@ function quitting_intentionRoutineEachFrame(snapshot) {
     }
 
     frameRemains = 0.0 + 5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (quitting_intention_keyboard.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+    if ((quitting_intention_keyboard.status === PsychoJS.Status.STARTED || quitting_intention_keyboard.status === PsychoJS.Status.FINISHED) && t >= frameRemains) {
       quitting_intention_keyboard.status = PsychoJS.Status.FINISHED;
   }
 
