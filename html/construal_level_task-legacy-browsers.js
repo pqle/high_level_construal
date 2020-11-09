@@ -47,6 +47,13 @@ dialogCancelScheduler.add(quitPsychoJS, '', false);
 psychoJS.start({
   expName: expName,
   expInfo: expInfo,
+  resources: [
+    {name: 'action_conditions.csv', path: './resources/action_conditions.csv'},
+    {name: 'choose_condition.csv', path: './resources/choose_condition.csv'},
+    {name: 'future_scenario_conditions.csv', path: './resources/future_scenario_conditions.csv'},
+    {name: 'present_scenario_conditions.csv', path: './resources/present_scenario_conditions.csv'},
+    {name: 'lorem_ipsum.mp3', path: './resources/lorem_ipsum.mp3'},
+  ],
   });
 
 psychoJS.experimentLogger.setLevel(core.Logger.ServerLevel.DEBUG);
@@ -430,7 +437,7 @@ function scenario_trialsLoopBegin(scenario_trialsLoopScheduler) {
     psychoJS: psychoJS,
     nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
     extraInfo: expInfo, originPath: undefined,
-    trialList: TrialHandler.importConditions(psychoJS.serverManager, scenario_file, util.randint(low=0, high=15, size=1)),
+    trialList: TrialHandler.importConditions(psychoJS.serverManager, scenario_file, Array.from({length: 1}, () => util.randint(0, 16))),
     seed: undefined, name: 'scenario_trials'
   });
   psychoJS.experiment.addLoop(scenario_trials); // add the loop to the experiment
@@ -474,7 +481,7 @@ function action_trialsLoopBegin(action_trialsLoopScheduler) {
     psychoJS: psychoJS,
     nReps: 1, method: TrialHandler.Method.RANDOM,
     extraInfo: expInfo, originPath: undefined,
-    trialList: TrialHandler.importConditions(psychoJS.serverManager, 'action_conditions.csv', util.randint(low=0, high=47, size=3)),
+    trialList: TrialHandler.importConditions(psychoJS.serverManager, 'action_conditions.csv', Array.from({length: 3}, () => util.randint(0, 48))),
     seed: undefined, name: 'action_trials'
   });
   psychoJS.experiment.addLoop(action_trials); // add the loop to the experiment
