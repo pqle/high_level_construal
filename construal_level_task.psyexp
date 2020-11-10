@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" ?>
-<PsychoPy2experiment encoding="utf-8" version="2020.2.4">
+<PsychoPy2experiment encoding="utf-8" version="2020.2.5">
   <Settings>
     <Param name="Audio latency priority" updates="None" val="use prefs" valType="str"/>
     <Param name="Audio lib" updates="None" val="use prefs" valType="str"/>
@@ -471,7 +471,7 @@
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
     <LoopInitiator loopType="TrialHandler" name="scenario_trials">
-      <Param name="Selected rows" updates="None" val="$random(1)*15" valType="str"/>
+      <Param name="Selected rows" updates="None" val="$randint(low=0,high=15,size=1)" valType="str"/>
       <Param name="conditions" updates="None" val="None" valType="str"/>
       <Param name="conditionsFile" updates="None" val="$scenario_file" valType="str"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
@@ -482,7 +482,7 @@
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
     <LoopInitiator loopType="TrialHandler" name="action_trials">
-      <Param name="Selected rows" updates="None" val="$random(3)*47" valType="str"/>
+      <Param name="Selected rows" updates="None" val="$randint(low=0,high=47,size=3)" valType="str"/>
       <Param name="conditions" updates="None" val="[OrderedDict([('action', 'Grocery shopping')]), OrderedDict([('action', 'Driving a car')]), OrderedDict([('action', 'Reading a book')]), OrderedDict([('action', 'Going on vacation')]), OrderedDict([('action', 'Having lunch with a friend')]), OrderedDict([('action', 'Buying a car')]), OrderedDict([('action', 'Riding in an airplane')]), OrderedDict([('action', 'Calling a relative')]), OrderedDict([('action', 'Taking a shower')]), OrderedDict([('action', 'Going to the gym')]), OrderedDict([('action', 'Getting a haircut')]), OrderedDict([('action', 'A job interview')]), OrderedDict([('action', 'Attending a wedding')]), OrderedDict([('action', 'Playing cards')]), OrderedDict([('action', 'Making dinner')]), OrderedDict([('action', 'Buying coffee')]), OrderedDict([('action', 'Writing a letter')]), OrderedDict([('action', 'Cashing a check')]), OrderedDict([('action', 'Using an ATM')]), OrderedDict([('action', 'Doing laundry')]), OrderedDict([('action', 'Cleaning your room')]), OrderedDict([('action', 'Washing dishes')]), OrderedDict([('action', 'Throwing a ball')]), OrderedDict([('action', 'Hosting a party')]), OrderedDict([('action', 'Composing an email')]), OrderedDict([('action', 'Attending a party')]), OrderedDict([('action', 'Going shopping')]), OrderedDict([('action', 'Sending a text')]), OrderedDict([('action', 'Listening to music')]), OrderedDict([('action', 'Reading a newspaper')]), OrderedDict([('action', 'Riding a bike')]), OrderedDict([('action', 'Going for a walk')]), OrderedDict([('action', 'Walking a dog')]), OrderedDict([('action', 'Breaking your phone')]), OrderedDict([('action', 'Going on a date')]), OrderedDict([('action', 'Taking a photo with a friend')]), OrderedDict([('action', &quot;Celebrating a friend's birthday&quot;)]), OrderedDict([('action', 'Riding in a canoe')]), OrderedDict([('action', 'Watching TV')]), OrderedDict([('action', 'Going to a movie')]), OrderedDict([('action', 'Going to a concert')]), OrderedDict([('action', 'Staying home to study')]), OrderedDict([('action', 'Making a budget')]), OrderedDict([('action', 'Toothbrushing')]), OrderedDict([('action', 'Caring for houseplants')]), OrderedDict([('action', 'Locking a door')]), OrderedDict([('action', 'Painting a room')]), OrderedDict([('action', 'Greeting someone')])]" valType="str"/>
       <Param name="conditionsFile" updates="None" val="action_conditions.csv" valType="str"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
