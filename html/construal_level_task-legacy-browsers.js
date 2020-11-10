@@ -52,12 +52,20 @@ psychoJS.start({
     {name: 'choose_condition.csv', path: './resources/choose_condition.csv'},
     {name: 'future_scenario_conditions.csv', path: './resources/future_scenario_conditions.csv'},
     {name: 'present_scenario_conditions.csv', path: './resources/present_scenario_conditions.csv'},
-    {name: 'lorem_ipsum.mp3', path: './resources/lorem_ipsum.mp3'},
   ],
   });
 
 psychoJS.experimentLogger.setLevel(core.Logger.ServerLevel.DEBUG);
 
+// download audio resources based on specific scenarios to be displayed to participant
+function download_audio_resources(trial_list) {
+  let audio_files = [];
+  for (const element of trial_list) {
+    audio_files.push({name: (element.block1_audio), path: ('./resources/'.concat(element.block1_audio))});
+  }
+
+  psychoJS.downloadResources(audio_files);
+}
 
 var frameDur;
 function updateInfo() {
@@ -440,6 +448,8 @@ function scenario_trialsLoopBegin(scenario_trialsLoopScheduler) {
     trialList: TrialHandler.importConditions(psychoJS.serverManager, scenario_file, Array.from({length: 1}, () => util.randint(0, 16))),
     seed: undefined, name: 'scenario_trials'
   });
+	// Download audio resources
+  download_audio_resources(scenario_trials.trialList);
   psychoJS.experiment.addLoop(scenario_trials); // add the loop to the experiment
   currentLoop = scenario_trials;  // we're now the current loop
 

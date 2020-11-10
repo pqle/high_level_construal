@@ -61,12 +61,11 @@ either the `present_scenario_conditions.csv` or the `future_scenario_conditions.
 Each of these files contains 6 fields, `block1`, `block2`, `block3` which correspond
 to the scenario text broken up into 3 different blocks for presentation, and `block1_audio`,
 `block2_audio`, and `block3_audio` which are the names of the audio files of the recording
-of each block of text. These file names are all the same currently, and point to a placeholder
-audio file `lorem_ipsum.wav`.
+of each block of text.
 
 The final configuration file is `action_conditions.csv`.
 This file contains the 48 actions, from which 3 will be chosen in each trial,
 to display to the participant to help frame their thinking in the `present` or `future` condition.
 
 ## Developer documentation
-Created using [PsychoPy v2020.1.2](https://www.psychopy.org/)
+Created using [PsychoPy v2020.2.5](https://www.psychopy.org/)
