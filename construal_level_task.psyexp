@@ -7,7 +7,7 @@
     <Param name="Data file delimiter" updates="None" val="auto" valType="str"/>
     <Param name="Data filename" updates="None" val="u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])" valType="code"/>
     <Param name="Enable Escape" updates="None" val="True" valType="bool"/>
-    <Param name="Experiment info" updates="None" val="{'participant': '999'}" valType="code"/>
+    <Param name="Experiment info" updates="None" val="{'participant': '999', 'run_number': '1'}" valType="code"/>
     <Param name="Force stereo" updates="None" val="True" valType="bool"/>
     <Param name="Full-screen window" updates="None" val="False" valType="bool"/>
     <Param name="HTML path" updates="None" val="html" valType="str"/>
@@ -456,13 +456,33 @@
         <Param name="volume" updates="constant" val="1" valType="code"/>
       </SoundComponent>
     </Routine>
+    <Routine name="setup">
+      <CodeComponent name="choose_conditions_file">
+        <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="if expInfo['run_number'] == '0':&amp;#10;    conditions_file_name = 'choose_condition_practice.csv'&amp;#10;    scenario_trials_selection = [0]&amp;#10;    action_trials_selection = [0, 1, 2]&amp;#10;else:&amp;#10;    conditions_file_name = 'choose_condition.csv'&amp;#10;    scenario_trials_selection = randint(low=0,high=15,size=1)&amp;#10;    action_trials_selection = randint(low=0,high=47,size=3)&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="if ((expInfo[&quot;run_number&quot;] === &quot;0&quot;)) {&amp;#10;    conditions_file_name = &quot;choose_condition_practice.csv&quot;;&amp;#10;    scenario_trials_selection = [0];&amp;#10;    action_trials_selection = [0, 1, 2];&amp;#10;} else {&amp;#10;    conditions_file_name = &quot;choose_condition.csv&quot;;&amp;#10;    scenario_trials_selection = Array.from({length: 1}, () =&gt; util.randint(0, 16));&amp;#10;    action_trials_selection = Array.from({length: 3}, () =&gt; util.randint(0, 48));&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Both" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="choose_conditions_file" valType="code"/>
+      </CodeComponent>
+    </Routine>
   </Routines>
   <Flow>
+    <Routine name="setup"/>
     <Routine name="instructions"/>
     <LoopInitiator loopType="TrialHandler" name="block">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
-      <Param name="conditions" updates="None" val="[OrderedDict([('condition_type', 'present'), ('scenario_file', 'present_scenario_conditions.csv'), ('cue_text', 'Please imagine the next events occurring RIGHT NOW'), ('attention_check_text', 'How likely would you engage in this action right now?')]), OrderedDict([('condition_type', 'present'), ('scenario_file', 'present_scenario_conditions.csv'), ('cue_text', 'Please imagine the next events occurring RIGHT NOW'), ('attention_check_text', 'How likely would you engage in this action right now?')]), OrderedDict([('condition_type', 'present'), ('scenario_file', 'present_scenario_conditions.csv'), ('cue_text', 'Please imagine the next events occurring RIGHT NOW'), ('attention_check_text', 'How likely would you engage in this action right now?')]), OrderedDict([('condition_type', 'present'), ('scenario_file', 'present_scenario_conditions.csv'), ('cue_text', 'Please imagine the next events occurring RIGHT NOW'), ('attention_check_text', 'How likely would you engage in this action right now?')]), OrderedDict([('condition_type', 'future'), ('scenario_file', 'future_scenario_conditions.csv'), ('cue_text', 'Please imagine the next events occurring FIVE YEARS FROM NOW'), ('attention_check_text', 'How likely would you engage in this action five years from now?')]), OrderedDict([('condition_type', 'future'), ('scenario_file', 'future_scenario_conditions.csv'), ('cue_text', 'Please imagine the next events occurring FIVE YEARS FROM NOW'), ('attention_check_text', 'How likely would you engage in this action five years from now?')]), OrderedDict([('condition_type', 'future'), ('scenario_file', 'future_scenario_conditions.csv'), ('cue_text', 'Please imagine the next events occurring FIVE YEARS FROM NOW'), ('attention_check_text', 'How likely would you engage in this action five years from now?')]), OrderedDict([('condition_type', 'future'), ('scenario_file', 'future_scenario_conditions.csv'), ('cue_text', 'Please imagine the next events occurring FIVE YEARS FROM NOW'), ('attention_check_text', 'How likely would you engage in this action five years from now?')])]" valType="str"/>
-      <Param name="conditionsFile" updates="None" val="choose_condition.csv" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="$conditions_file_name" valType="str"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
@@ -471,7 +491,7 @@
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
     <LoopInitiator loopType="TrialHandler" name="scenario_trials">
-      <Param name="Selected rows" updates="None" val="$randint(low=0,high=15,size=1)" valType="str"/>
+      <Param name="Selected rows" updates="None" val="$scenario_trials_selection" valType="str"/>
       <Param name="conditions" updates="None" val="None" valType="str"/>
       <Param name="conditionsFile" updates="None" val="$scenario_file" valType="str"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
@@ -482,7 +502,7 @@
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
     <LoopInitiator loopType="TrialHandler" name="action_trials">
-      <Param name="Selected rows" updates="None" val="$randint(low=0,high=47,size=3)" valType="str"/>
+      <Param name="Selected rows" updates="None" val="$action_trials_selection" valType="str"/>
       <Param name="conditions" updates="None" val="[OrderedDict([('action', 'Grocery shopping')]), OrderedDict([('action', 'Driving a car')]), OrderedDict([('action', 'Reading a book')]), OrderedDict([('action', 'Going on vacation')]), OrderedDict([('action', 'Having lunch with a friend')]), OrderedDict([('action', 'Buying a car')]), OrderedDict([('action', 'Riding in an airplane')]), OrderedDict([('action', 'Calling a relative')]), OrderedDict([('action', 'Taking a shower')]), OrderedDict([('action', 'Going to the gym')]), OrderedDict([('action', 'Getting a haircut')]), OrderedDict([('action', 'A job interview')]), OrderedDict([('action', 'Attending a wedding')]), OrderedDict([('action', 'Playing cards')]), OrderedDict([('action', 'Making dinner')]), OrderedDict([('action', 'Buying coffee')]), OrderedDict([('action', 'Writing a letter')]), OrderedDict([('action', 'Cashing a check')]), OrderedDict([('action', 'Using an ATM')]), OrderedDict([('action', 'Doing laundry')]), OrderedDict([('action', 'Cleaning your room')]), OrderedDict([('action', 'Washing dishes')]), OrderedDict([('action', 'Throwing a ball')]), OrderedDict([('action', 'Hosting a party')]), OrderedDict([('action', 'Composing an email')]), OrderedDict([('action', 'Attending a party')]), OrderedDict([('action', 'Going shopping')]), OrderedDict([('action', 'Sending a text')]), OrderedDict([('action', 'Listening to music')]), OrderedDict([('action', 'Reading a newspaper')]), OrderedDict([('action', 'Riding a bike')]), OrderedDict([('action', 'Going for a walk')]), OrderedDict([('action', 'Walking a dog')]), OrderedDict([('action', 'Breaking your phone')]), OrderedDict([('action', 'Going on a date')]), OrderedDict([('action', 'Taking a photo with a friend')]), OrderedDict([('action', &quot;Celebrating a friend's birthday&quot;)]), OrderedDict([('action', 'Riding in a canoe')]), OrderedDict([('action', 'Watching TV')]), OrderedDict([('action', 'Going to a movie')]), OrderedDict([('action', 'Going to a concert')]), OrderedDict([('action', 'Staying home to study')]), OrderedDict([('action', 'Making a budget')]), OrderedDict([('action', 'Toothbrushing')]), OrderedDict([('action', 'Caring for houseplants')]), OrderedDict([('action', 'Locking a door')]), OrderedDict([('action', 'Painting a room')]), OrderedDict([('action', 'Greeting someone')])]" valType="str"/>
       <Param name="conditionsFile" updates="None" val="action_conditions.csv" valType="str"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>

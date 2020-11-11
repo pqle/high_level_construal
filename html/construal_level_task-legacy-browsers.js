@@ -17,7 +17,7 @@ psychoJS.openWindow({
 
 // store info about the experiment session:
 let expName = 'construal_level_task';  // from the Builder filename that created this script
-let expInfo = {'participant': '999'};
+let expInfo = {'participant': '999', 'run_number': '1'};
 
 // schedule the experiment:
 psychoJS.schedule(psychoJS.gui.DlgFromDict({
@@ -32,6 +32,9 @@ psychoJS.scheduleCondition(function() { return (psychoJS.gui.dialogComponent.but
 // flowScheduler gets run if the participants presses OK
 flowScheduler.add(updateInfo); // add timeStamp
 flowScheduler.add(experimentInit);
+flowScheduler.add(setupRoutineBegin());
+flowScheduler.add(setupRoutineEachFrame());
+flowScheduler.add(setupRoutineEnd());
 flowScheduler.add(instructionsRoutineBegin());
 flowScheduler.add(instructionsRoutineEachFrame());
 flowScheduler.add(instructionsRoutineEnd());
@@ -52,6 +55,8 @@ psychoJS.start({
     {name: 'choose_condition.csv', path: './resources/choose_condition.csv'},
     {name: 'future_scenario_conditions.csv', path: './resources/future_scenario_conditions.csv'},
     {name: 'present_scenario_conditions.csv', path: './resources/present_scenario_conditions.csv'},
+    {name: 'choose_condition_practice.csv', path: './resources/choose_condition_practice.csv'},
+    {name: 'present_scenario_conditions_practice.csv', path: './resources/present_scenario_conditions._practice.csv'},
   ],
   });
 
@@ -88,6 +93,10 @@ function updateInfo() {
 }
 
 
+var setupClock;
+var conditions_file_name;
+var scenario_trials_selection;
+var action_trials_selection;
 var instructionsClock;
 var instruction_text;
 var key_resp;
@@ -116,6 +125,18 @@ var quitting_intention_keyboard;
 var globalClock;
 var routineTimer;
 function experimentInit() {
+  // Initialize components for Routine "setup"
+  setupClock = new util.Clock();
+  if ((expInfo["run_number"] === "0")) {
+      conditions_file_name = "choose_condition_practice.csv";
+      scenario_trials_selection = [0];
+      action_trials_selection = [0, 1, 2];
+  } else {
+      conditions_file_name = "choose_condition.csv";
+      scenario_trials_selection = Array.from({length: 1}, () => util.randint(0, 16));
+      action_trials_selection = Array.from({length: 3}, () => util.randint(0, 48));
+  }
+  
   // Initialize components for Routine "instructions"
   instructionsClock = new util.Clock();
   instruction_text = new visual.TextStim({
@@ -171,7 +192,7 @@ function experimentInit() {
   attention_check_rating = new visual.Slider({
     win: psychoJS.window, name: 'attention_check_rating',
     size: [1.0, 0.025], pos: [0, (- 0.3)], units: 'height',
-    labels: ['not at all\noften', 'somewhat\noften', 'moderately\noften', 'very\noften', 'extremely\noften'], ticks: [1, 2, 3, 4, 5],
+    labels: ["not at all\noften", "somewhat\noften", "moderately\noften", "very\noften", "extremely\noften"], ticks: [1, 2, 3, 4, 5],
     granularity: 0, style: [visual.Slider.Style.TRIANGLE_MARKER],
     color: new util.Color('LightGray'), 
     fontFamily: 'HelveticaBold', bold: true, italic: false, depth: -3, 
@@ -266,7 +287,7 @@ function experimentInit() {
   quitting_intention_rating = new visual.Slider({
     win: psychoJS.window, name: 'quitting_intention_rating',
     size: [1.0, 0.025], pos: [0, (- 0.3)], units: 'height',
-    labels: ['encourage\na great deal', 'encourage\na little', 'neither encourage\nnor discourage', 'discourage\na little', 'discourage\na great deal'], ticks: [1, 2, 3, 4, 5],
+    labels: ["encourage\na great deal", "encourage\na little", "neither encourage\nnor discourage", "discourage\na little", "discourage\na great deal"], ticks: [1, 2, 3, 4, 5],
     granularity: 0, style: [visual.Slider.Style.TRIANGLE_MARKER],
     color: new util.Color('LightGray'), 
     fontFamily: 'HelveticaBold', bold: true, italic: false, depth: -2, 
@@ -285,6 +306,81 @@ function experimentInit() {
 
 var t;
 var frameN;
+var setupComponents;
+function setupRoutineBegin(snapshot) {
+  return function () {
+    //------Prepare to start Routine 'setup'-------
+    t = 0;
+    setupClock.reset(); // clock
+    frameN = -1;
+    // update component parameters for each repeat
+    // keep track of which components have finished
+    setupComponents = [];
+    
+    setupComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+       });
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+var continueRoutine;
+function setupRoutineEachFrame(snapshot) {
+  return function () {
+    //------Loop for each frame of Routine 'setup'-------
+    let continueRoutine = true; // until we're told otherwise
+    // get current time
+    t = setupClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    setupComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+      }
+    });
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+function setupRoutineEnd(snapshot) {
+  return function () {
+    //------Ending Routine 'setup'-------
+    setupComponents.forEach( function(thisComponent) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    });
+    // the Routine "setup" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    return Scheduler.Event.NEXT;
+  };
+}
+
+
 var _key_resp_allKeys;
 var instructionsComponents;
 function instructionsRoutineBegin(snapshot) {
@@ -316,7 +412,6 @@ function instructionsRoutineBegin(snapshot) {
 
 
 var frameRemains;
-var continueRoutine;
 function instructionsRoutineEachFrame(snapshot) {
   return function () {
     //------Loop for each frame of Routine 'instructions'-------
@@ -416,7 +511,7 @@ function blockLoopBegin(blockLoopScheduler) {
     psychoJS: psychoJS,
     nReps: 1, method: TrialHandler.Method.RANDOM,
     extraInfo: expInfo, originPath: undefined,
-    trialList: 'choose_condition.csv',
+    trialList: conditions_file_name,
     seed: undefined, name: 'block'
   });
   psychoJS.experiment.addLoop(block); // add the loop to the experiment
@@ -445,7 +540,7 @@ function scenario_trialsLoopBegin(scenario_trialsLoopScheduler) {
     psychoJS: psychoJS,
     nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
     extraInfo: expInfo, originPath: undefined,
-    trialList: TrialHandler.importConditions(psychoJS.serverManager, scenario_file, Array.from({length: 1}, () => util.randint(0, 16))),
+    trialList: TrialHandler.importConditions(psychoJS.serverManager, scenario_file, scenario_trials_selection),
     seed: undefined, name: 'scenario_trials'
   });
 	// Download audio resources
@@ -491,7 +586,7 @@ function action_trialsLoopBegin(action_trialsLoopScheduler) {
     psychoJS: psychoJS,
     nReps: 1, method: TrialHandler.Method.RANDOM,
     extraInfo: expInfo, originPath: undefined,
-    trialList: TrialHandler.importConditions(psychoJS.serverManager, 'action_conditions.csv', Array.from({length: 3}, () => util.randint(0, 48))),
+    trialList: TrialHandler.importConditions(psychoJS.serverManager, 'action_conditions.csv', action_trials_selection),
     seed: undefined, name: 'action_trials'
   });
   psychoJS.experiment.addLoop(action_trials); // add the loop to the experiment
@@ -545,7 +640,7 @@ function cueRoutineBegin(snapshot) {
     frameN = -1;
     routineTimer.add(1.000000);
     // update component parameters for each repeat
-    cue_str.setText(('Please imagine the next events occurring ' + cue_text));
+    cue_str.setText(("Please imagine the next events occurring " + cue_text));
     // keep track of which components have finished
     cueComponents = [];
     cueComponents.push(cue_str);
@@ -826,7 +921,7 @@ function scenario_cueRoutineBegin(snapshot) {
     frameN = -1;
     routineTimer.add(1.000000);
     // update component parameters for each repeat
-    scenario_cue_text.setText(('Please imagine the next events occurring ' + cue_text));
+    scenario_cue_text.setText(("Please imagine the next events occurring " + cue_text));
     // keep track of which components have finished
     scenario_cueComponents = [];
     scenario_cueComponents.push(scenario_cue_text);
