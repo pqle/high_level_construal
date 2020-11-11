@@ -12,7 +12,10 @@ This task is used in the Rethink Smoking study.
 
 ## How to run the task
 
-The task is run using [PsychoPy](https://www.psychopy.org/).
+The task is run using [PsychoPy](https://www.psychopy.org/). After starting the task,
+enter the participant identifier (a 3 digit number) and the run number.
+A run number of 0 will start a practice run that displays one block containing
+3 actions and attention check questions and one scenario.
 
 ## Task description
 
