@@ -20,7 +20,7 @@ const psychoJS = new PsychoJS({
 
 // open window:
 psychoJS.openWindow({
-  fullscr: false,
+  fullscr: true,
   color: new util.Color([0, 0, 0]),
   units: 'height',
   waitBlanking: true
@@ -28,7 +28,7 @@ psychoJS.openWindow({
 
 // store info about the experiment session:
 let expName = 'construal_level_task';  // from the Builder filename that created this script
-let expInfo = {'participant': '999', 'run_number': '1'};
+let expInfo = {'participant': '', 'run_number': '1'};
 
 // schedule the experiment:
 psychoJS.schedule(psychoJS.gui.DlgFromDict({
