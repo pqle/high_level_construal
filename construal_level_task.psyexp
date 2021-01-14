@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" ?>
-<PsychoPy2experiment encoding="utf-8" version="2020.2.5">
+<PsychoPy2experiment encoding="utf-8" version="2020.2.10">
   <Settings>
     <Param name="Audio latency priority" updates="None" val="use prefs" valType="str"/>
     <Param name="Audio lib" updates="None" val="use prefs" valType="str"/>
@@ -7,7 +7,7 @@
     <Param name="Data file delimiter" updates="None" val="auto" valType="str"/>
     <Param name="Data filename" updates="None" val="u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])" valType="code"/>
     <Param name="Enable Escape" updates="None" val="True" valType="bool"/>
-    <Param name="Experiment info" updates="None" val="{'participant': '', 'run_number': '1'}" valType="code"/>
+    <Param name="Experiment info" updates="None" val="{'participant': '', 'session': '', 'run_number': '1'}" valType="code"/>
     <Param name="Force stereo" updates="None" val="True" valType="bool"/>
     <Param name="Full-screen window" updates="None" val="True" valType="bool"/>
     <Param name="HTML path" updates="None" val="html" valType="str"/>
@@ -34,7 +34,7 @@
   </Settings>
   <Routines>
     <Routine name="instructions">
-      <TextComponent name="instruction_text">
+      <TextComponent name="instruction">
         <Param name="color" updates="constant" val="white" valType="str"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
@@ -43,7 +43,7 @@
         <Param name="font" updates="constant" val="Helvetica" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
         <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
-        <Param name="name" updates="None" val="instruction_text" valType="code"/>
+        <Param name="name" updates="None" val="instruction" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
@@ -54,7 +54,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="20" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="Instruction text.&amp;#10;How to perform task." valType="str"/>
+        <Param name="text" updates="constant" val="$instruction_text" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -86,8 +86,8 @@
         <Param name="Begin JS Routine" updates="constant" val="if ((condition_type === &quot;present&quot;)) {&amp;#10;    attention_check_text = &quot;How often do you currently engage in this action?&quot;;&amp;#10;} else {&amp;#10;    attention_check_text = &quot;How likely would you engage in this action five years from now?&quot;;&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="if condition_type == 'present':&amp;#10;    attention_check_text = 'How often do you currently engage in this action?'&amp;#10;else:&amp;#10;    attention_check_text = 'How likely would you engage in this action five years from now?'" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
-        <Param name="Each Frame" updates="constant" val="# Update marker position and slider rating&amp;#10;# when there are keypresses of the 1, 2, 3, 4, 5 buttons&amp;#10;rating_keys = ['1', '2', '3', '4', '5']&amp;#10;if attention_check_keyboard.keys in rating_keys:&amp;#10;    attention_check_rating.markerPos = int(attention_check_keyboard.keys)&amp;#10;    # confirm rating by setting to current markerPos&amp;#10;    attention_check_rating.rating = attention_check_rating.markerPos&amp;#10;" valType="extendedCode"/>
-        <Param name="Each JS Frame" updates="constant" val="var _pj;&amp;#10;function _pj_snippets(container) {&amp;#10;    function in_es6(left, right) {&amp;#10;        if (((right instanceof Array) || ((typeof right) === &quot;string&quot;))) {&amp;#10;            return (right.indexOf(left) &gt; (- 1));&amp;#10;        } else {&amp;#10;            if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {&amp;#10;                return right.has(left);&amp;#10;            } else {&amp;#10;                return (left in right);&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;    container[&quot;in_es6&quot;] = in_es6;&amp;#10;    return container;&amp;#10;}&amp;#10;_pj = {};&amp;#10;_pj_snippets(_pj);&amp;#10;rating_keys = [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;];&amp;#10;if (_pj.in_es6(attention_check_keyboard.keys, rating_keys)) {&amp;#10;    attention_check_rating.markerPos = Number.parseInt(attention_check_keyboard.keys);&amp;#10;    attention_check_rating.rating = attention_check_rating.markerPos;&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="# Update marker position and slider rating&amp;#10;# when there are keypresses of the rating buttons&amp;#10;r = convert_key_to_rating(expInfo['run_number'], attention_check_keyboard.keys)&amp;#10;attention_check_rating.markerPos = r&amp;#10;# confirm rating by setting to current markerPos&amp;#10;attention_check_rating.rating = r&amp;#10;" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="r = convert_key_to_rating(expInfo[&quot;run_number&quot;], attention_check_keyboard.keys);&amp;#10;attention_check_rating.markerPos = r;&amp;#10;attention_check_rating.rating = r;&amp;#10;" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
@@ -173,7 +173,7 @@
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </SliderComponent>
       <KeyboardComponent name="attention_check_keyboard">
-        <Param name="allowedKeys" updates="constant" val="'1', '2', '3', '4', '5'" valType="code"/>
+        <Param name="allowedKeys" updates="constant" val="'5', '6', '7', '8', '9'" valType="code"/>
         <Param name="correctAns" updates="constant" val="" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="discard previous" updates="constant" val="True" valType="bool"/>
@@ -252,8 +252,8 @@
         <Param name="Begin JS Routine" updates="constant" val="if ((condition_type === &quot;present&quot;)) {&amp;#10;    quitting_intention_str = &quot;Consider the thoughts that would go through your mind if you were in this situation right now.\n\nTo what extent do these thoughts encourage or discourage you to smoke?&quot;;&amp;#10;} else {&amp;#10;    quitting_intention_str = &quot;Consider the thoughts that would go through your mind if you are in this situation five years from now.\n\nTo what extent do these thoughts encourage or discourage you to smoke?&quot;;&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="if condition_type == 'present':&amp;#10;    quitting_intention_str = 'Consider the thoughts that would go through your mind if you were in this situation right now.\n\nTo what extent do these thoughts encourage or discourage you to smoke?'&amp;#10;else:&amp;#10;    quitting_intention_str = 'Consider the thoughts that would go through your mind if you are in this situation five years from now.\n\nTo what extent do these thoughts encourage or discourage you to smoke?'" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
-        <Param name="Each Frame" updates="constant" val="# Update marker position and slider rating&amp;#10;# when there are keypresses of the 1, 2, 3, 4, 5 buttons&amp;#10;rating_keys = ['1', '2', '3', '4', '5']&amp;#10;if quitting_intention_keyboard.keys in rating_keys:&amp;#10;    quitting_intention_rating.markerPos = int(quitting_intention_keyboard.keys)&amp;#10;    # confirm rating by setting to current markerPos&amp;#10;    quitting_intention_rating.rating = quitting_intention_rating.markerPos&amp;#10;" valType="extendedCode"/>
-        <Param name="Each JS Frame" updates="constant" val="var _pj;&amp;#10;function _pj_snippets(container) {&amp;#10;    function in_es6(left, right) {&amp;#10;        if (((right instanceof Array) || ((typeof right) === &quot;string&quot;))) {&amp;#10;            return (right.indexOf(left) &gt; (- 1));&amp;#10;        } else {&amp;#10;            if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {&amp;#10;                return right.has(left);&amp;#10;            } else {&amp;#10;                return (left in right);&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;    container[&quot;in_es6&quot;] = in_es6;&amp;#10;    return container;&amp;#10;}&amp;#10;_pj = {};&amp;#10;_pj_snippets(_pj);&amp;#10;rating_keys = [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;];&amp;#10;if (_pj.in_es6(quitting_intention_keyboard.keys, rating_keys)) {&amp;#10;    quitting_intention_rating.markerPos = Number.parseInt(quitting_intention_keyboard.keys);&amp;#10;    quitting_intention_rating.rating = quitting_intention_rating.markerPos;&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="# Update marker position and slider rating&amp;#10;# when there are keypresses of the rating buttons&amp;#10;r = convert_key_to_rating(expInfo['run_number'], quitting_intention_keyboard.keys)&amp;#10;quitting_intention_rating.markerPos = r&amp;#10;# confirm rating by setting to current markerPos&amp;#10;quitting_intention_rating.rating = r&amp;#10;" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="r = convert_key_to_rating(expInfo[&quot;run_number&quot;], quitting_intention_keyboard.keys);&amp;#10;quitting_intention_rating.markerPos = r;&amp;#10;quitting_intention_rating.rating = r;&amp;#10;" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
@@ -315,7 +315,7 @@
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </SliderComponent>
       <KeyboardComponent name="quitting_intention_keyboard">
-        <Param name="allowedKeys" updates="constant" val="'1', '2', '3', '4', '5'" valType="code"/>
+        <Param name="allowedKeys" updates="constant" val="'5', '6', '7', '8', '9'" valType="code"/>
         <Param name="correctAns" updates="constant" val="" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="discard previous" updates="constant" val="True" valType="bool"/>
@@ -460,8 +460,8 @@
       <CodeComponent name="choose_conditions_file">
         <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Experiment" updates="constant" val="if expInfo['run_number'] == '0':&amp;#10;    conditions_file_name = 'choose_condition_practice.csv'&amp;#10;    scenario_trials_selection = [0]&amp;#10;    action_trials_selection = [0, 1, 2]&amp;#10;else:&amp;#10;    conditions_file_name = 'choose_condition.csv'&amp;#10;    scenario_trials_selection = randint(low=0,high=15,size=1)&amp;#10;    action_trials_selection = randint(low=0,high=47,size=3)&amp;#10;" valType="extendedCode"/>
-        <Param name="Begin JS Experiment" updates="constant" val="if ((expInfo[&quot;run_number&quot;] === &quot;0&quot;)) {&amp;#10;    conditions_file_name = &quot;choose_condition_practice.csv&quot;;&amp;#10;    scenario_trials_selection = [0];&amp;#10;    action_trials_selection = [0, 1, 2];&amp;#10;} else {&amp;#10;    conditions_file_name = &quot;choose_condition.csv&quot;;&amp;#10;    scenario_trials_selection = Array.from({length: 1}, () =&gt; util.randint(0, 16));&amp;#10;    action_trials_selection = Array.from({length: 3}, () =&gt; util.randint(0, 48));&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="# run_number 0 is a practice session&amp;#10;if expInfo['run_number'] == '0':&amp;#10;    conditions_file_name = 'choose_condition_practice.csv'&amp;#10;    scenario_trials_selection = [0]&amp;#10;    action_trials_selection = [0, 1, 2]&amp;#10;    instruction_text = 'Instruction text for practice session'&amp;#10;else:&amp;#10;    conditions_file_name = 'choose_condition.csv'&amp;#10;    scenario_trials_selection = randint(low=0,high=15,size=1)&amp;#10;    action_trials_selection = randint(low=0,high=47,size=3)&amp;#10;    instruction_text = 'Calibrating scanner'&amp;#10;rating_keys = ['5', '6', '7', '8', '9']&amp;#10;&amp;#10;&amp;#10;def convert_key_to_rating(run_number, key):&amp;#10;    rating = None&amp;#10;    if key in rating_keys:&amp;#10;        rating = int(key)&amp;#10;        if run_number != '0':&amp;#10;            rating = rating - 4&amp;#10;&amp;#10;    return rating&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="var _pj;&amp;#10;function _pj_snippets(container) {&amp;#10;    function in_es6(left, right) {&amp;#10;        if (((right instanceof Array) || ((typeof right) === &quot;string&quot;))) {&amp;#10;            return (right.indexOf(left) &gt; (- 1));&amp;#10;        } else {&amp;#10;            if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {&amp;#10;                return right.has(left);&amp;#10;            } else {&amp;#10;                return (left in right);&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;    container[&quot;in_es6&quot;] = in_es6;&amp;#10;    return container;&amp;#10;}&amp;#10;_pj = {};&amp;#10;_pj_snippets(_pj);&amp;#10;if ((expInfo[&quot;run_number&quot;] === &quot;0&quot;)) {&amp;#10;    conditions_file_name = &quot;choose_condition_practice.csv&quot;;&amp;#10;    scenario_trials_selection = [0];&amp;#10;    action_trials_selection = [0, 1, 2];&amp;#10;    instruction_text = &quot;Instruction text for practice session&quot;;&amp;#10;} else {&amp;#10;    conditions_file_name = &quot;choose_condition.csv&quot;;&amp;#10;    scenario_trials_selection = Array.from({length: 1}, () =&gt; util.randint(0, 16));&amp;#10;    action_trials_selection = Array.from({length: 3}, () =&gt; util.randint(0, 48));&amp;#10;    instruction_text = &quot;Calibrating scanner&quot;;&amp;#10;}&amp;#10;rating_keys = [&quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, &quot;9&quot;]&amp;#10;function convert_key_to_rating(run_number, key) {&amp;#10;    var rating;&amp;#10;    rating = null;&amp;#10;    if (_pj.in_es6(key, rating_keys)) {&amp;#10;        rating = Number.parseInt(key);&amp;#10;        if ((run_number !== &quot;0&quot;)) {&amp;#10;            rating = (rating - 4);&amp;#10;        }&amp;#10;    }&amp;#10;    return rating;&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Both" valType="str"/>
