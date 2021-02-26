@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.1.0),
-    on Wed Feb 24 10:50:18 2021
+    on Fri Feb 26 10:12:02 2021
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -147,7 +147,7 @@ attention_check_rating = visual.Slider(win=win, name='attention_check_rating',
     labels=['not at all\noften','somewhat\noften','moderately\noften','very\noften','extremely\noften'], ticks=(1, 2, 3, 4, 5), granularity=0,
     style='rating', styleTweaks=('triangleMarker',), opacity=1,
     color='LightGray', fillColor='Red', borderColor='White', colorSpace='rgb',
-    font='HelveticaBold', labelHeight=0.05,
+    font='Helvetica', labelHeight=0.05,
     flip=False, depth=-3, readOnly=False)
 attention_check_keyboard = keyboard.Keyboard()
 
@@ -214,7 +214,7 @@ quitting_intention_rating = visual.Slider(win=win, name='quitting_intention_rati
     labels=['encourage\na great deal','encourage\na little','neither encourage\nnor discourage','discourage\na little','discourage\na great deal'], ticks=(1, 2, 3, 4, 5), granularity=0,
     style='rating', styleTweaks=('triangleMarker',), opacity=1,
     color='LightGray', fillColor='Red', borderColor='White', colorSpace='rgb',
-    font='HelveticaBold', labelHeight=0.05,
+    font='Helvetica', labelHeight=0.05,
     flip=False, depth=-2, readOnly=False)
 quitting_intention_keyboard = keyboard.Keyboard()
 
