@@ -12,10 +12,7 @@ This task is used in the Rethink Smoking study.
 
 ## How to run the task
 
-The task is run using [PsychoPy](https://www.psychopy.org/). After starting the task,
-enter the participant identifier (a 3 digit number) and the run number.
-A run number of 0 will start a practice run that displays one block containing
-3 actions and attention check questions and one scenario.
+The task is run using [PsychoPy](https://www.psychopy.org/). Fill in the participant identifier, the session number and the run number. Session 0 is a brief practice run, session 1 and 2 with runs 1, 2, 3 or 4 are in-scanner runs. The task will start automatically after that.
 
 ## Task description
 
@@ -54,9 +51,9 @@ encourage a great deal - encourage a little - neither encourage nor discourage -
 
 ### How to configure
 This task is configured using several comma-separated values (.csv) files.
-The first is the `choose_conditions.csv`. There are 8 entries, 4 indicating the
-`present` condition and 4 indicating the `future` condition.
-The 8 entries correspond to the 8 blocks that will be run.
+The first is the `choose_conditions.csv`. There are 4 entries, 2 indicating the
+`present` condition and 2 indicating the `future` condition.
+The 8 entries correspond to the 4 blocks that will be run.
 The conditions are randomly selected without replacement.
 
 The selection of one condition then selects the next file that configures the task,
