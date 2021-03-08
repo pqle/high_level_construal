@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" ?>
-<PsychoPy2experiment encoding="utf-8" version="2021.1.0">
+<PsychoPy2experiment encoding="utf-8" version="2021.1.2">
   <Settings>
     <Param name="Audio latency priority" updates="None" val="use prefs" valType="str"/>
     <Param name="Audio lib" updates="None" val="use prefs" valType="str"/>
@@ -159,7 +159,7 @@
         <Param name="forceEndRoutine" updates="constant" val="False" valType="bool"/>
         <Param name="granularity" updates="constant" val="0" valType="code"/>
         <Param name="labels" updates="constant" val="['not at all\noften','somewhat\noften','moderately\noften','very\noften','extremely\noften']" valType="list"/>
-        <Param name="letterHeight" updates="constant" val="0.05" valType="num"/>
+        <Param name="letterHeight" updates="constant" val="0.03" valType="num"/>
         <Param name="name" updates="None" val="attention_check_rating" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
@@ -310,7 +310,7 @@
         <Param name="forceEndRoutine" updates="constant" val="False" valType="bool"/>
         <Param name="granularity" updates="constant" val="0" valType="code"/>
         <Param name="labels" updates="constant" val="['encourage\na great deal','encourage\na little','neither encourage\nnor discourage','discourage\na little','discourage\na great deal']" valType="list"/>
-        <Param name="letterHeight" updates="constant" val="0.05" valType="num"/>
+        <Param name="letterHeight" updates="constant" val="0.03" valType="num"/>
         <Param name="name" updates="None" val="quitting_intention_rating" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>

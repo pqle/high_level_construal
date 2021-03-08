@@ -165,7 +165,7 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
         labels=['not at all\noften','somewhat\noften','moderately\noften','very\noften','extremely\noften'], ticks=(1, 2, 3, 4, 5), granularity=0,
         style='rating', styleTweaks=('triangleMarker',), opacity=1,
         color='LightGray', fillColor='Red', borderColor='White', colorSpace='rgb',
-        font='Helvetica', labelHeight=0.05,
+        font='Helvetica', labelHeight=0.03,
         flip=False, depth=-3, readOnly=False)
     attention_check_keyboard = keyboard.Keyboard()
 
@@ -232,7 +232,7 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
         labels=['encourage\na great deal','encourage\na little','neither encourage\nnor discourage','discourage\na little','discourage\na great deal'], ticks=(1, 2, 3, 4, 5), granularity=0,
         style='rating', styleTweaks=('triangleMarker',), opacity=1,
         color='LightGray', fillColor='Red', borderColor='White', colorSpace='rgb',
-        font='Helvetica', labelHeight=0.05,
+        font='Helvetica', labelHeight=0.03,
         flip=False, depth=-2, readOnly=False)
     quitting_intention_keyboard = keyboard.Keyboard()
 
