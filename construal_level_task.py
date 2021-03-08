@@ -134,6 +134,9 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
         depth=0.0);
     key_resp = keyboard.Keyboard()
 
+    # Initialize components for Routine "block_setup"
+    block_setupClock = core.Clock()
+
     # Initialize components for Routine "cue"
     cueClock = core.Clock()
     cue_str = visual.TextStim(win=win, name='cue_str',
@@ -411,6 +414,59 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
 
     for thisBlock in block:
         currentLoop = block
+
+        # ------Prepare to start Routine "block_setup"-------
+        continueRoutine = True
+        # update component parameters for each repeat
+        scenario_trials_selection = randint(low=0, high=15, size=1)
+        action_trials_selection = randint(low=0, high=47, size=3)
+        # keep track of which components have finished
+        block_setupComponents = []
+        for thisComponent in block_setupComponents:
+            thisComponent.tStart = None
+            thisComponent.tStop = None
+            thisComponent.tStartRefresh = None
+            thisComponent.tStopRefresh = None
+            if hasattr(thisComponent, 'status'):
+                thisComponent.status = NOT_STARTED
+        # reset timers
+        t = 0
+        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+        block_setupClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+        frameN = -1
+
+        # -------Run Routine "block_setup"-------
+        while continueRoutine:
+            # get current time
+            t = block_setupClock.getTime()
+            tThisFlip = win.getFutureFlipTime(clock=block_setupClock)
+            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+            # update/draw components on each frame
+
+            # check for quit (typically the Esc key)
+            if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+                core.quit()
+
+            # check if all components have finished
+            if not continueRoutine:  # a component has requested a forced-end of Routine
+                break
+            continueRoutine = False  # will revert to True if at least one component still running
+            for thisComponent in block_setupComponents:
+                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                    continueRoutine = True
+                    break  # at least one component has not yet finished
+
+            # refresh the screen
+            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+                win.flip()
+
+        # -------Ending Routine "block_setup"-------
+        for thisComponent in block_setupComponents:
+            if hasattr(thisComponent, "setAutoDraw"):
+                thisComponent.setAutoDraw(False)
+        # the Routine "block_setup" was not non-slip safe, so reset the non-slip timer
+        routineTimer.reset()
 
         # set up handler to look after randomisation of conditions etc
         scenario_trials = data.TrialHandler(nReps=1, method='sequential',
