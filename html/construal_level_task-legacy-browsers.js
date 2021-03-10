@@ -68,6 +68,8 @@ function download_audio_resources(trial_list) {
   let audio_files = [];
   for (const element of trial_list) {
     audio_files.push({name: (element.block1_audio), path: ('./resources/'.concat(element.block1_audio))});
+    audio_files.push({name: (element.block2_audio), path: ('./resources/'.concat(element.block2_audio))});
+    audio_files.push({name: (element.block3_audio), path: ('./resources/'.concat(element.block3_audio))});
   }
 
   psychoJS.downloadResources(audio_files);
