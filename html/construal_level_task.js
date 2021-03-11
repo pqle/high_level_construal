@@ -89,6 +89,34 @@ function download_audio_resources(trial_list) {
   psychoJS.downloadResources(audio_files);
 }
 
+var _pj;
+function _pj_snippets(container) {
+    function in_es6(left, right) {
+        if (((right instanceof Array) || ((typeof right) === "string"))) {
+            return (right.indexOf(left) > (- 1));
+        } else {
+            if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {
+                return right.has(left);
+            } else {
+                return (left in right);
+            }
+        }
+    }
+    container["in_es6"] = in_es6;
+    return container;
+}
+_pj = {};
+_pj_snippets(_pj);
+rating_keys = ["5", "6", "7", "8", "9"];
+function convert_key_to_rating(key) {
+    var rating;
+    rating = null;
+    if (_pj.in_es6(key, rating_keys)) {
+        rating = Number.parseInt(key);
+        rating = (rating - 4);
+    }
+    return rating;
+}
 
 var frameDur;
 function updateInfo() {
@@ -113,6 +141,7 @@ function updateInfo() {
 
 var setupClock;
 var _pj;
+var is_first;
 var conditions_file_name;
 var start_text_str;
 var start_text_duration;
@@ -154,26 +183,9 @@ var routineTimer;
 function experimentInit() {
   // Initialize components for Routine "setup"
   setupClock = new util.Clock();
-  var _pj;
-  function _pj_snippets(container) {
-      function in_es6(left, right) {
-          if (((right instanceof Array) || ((typeof right) === "string"))) {
-              return (right.indexOf(left) > (- 1));
-          } else {
-              if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {
-                  return right.has(left);
-              } else {
-                  return (left in right);
-              }
-          }
-      }
-      container["in_es6"] = in_es6;
-      return container;
-  }
-  _pj = {};
-  _pj_snippets(_pj);
   conditions_file_name = "choose_condition.csv";
   
+  is_first = false;
   if (is_first) {
       start_text_str = "Calibrating scanner";
       start_text_duration = 120;
@@ -191,16 +203,7 @@ function experimentInit() {
       action_trials_selection = [0, 1, 2];
       start_text_str = "Practice for construal level task";
   }
-  rating_keys = ["5", "6", "7", "8", "9"];
-  function convert_key_to_rating(key) {
-      var rating;
-      rating = null;
-      if (_pj.in_es6(key, rating_keys)) {
-          rating = Number.parseInt(key);
-          rating = (rating - 4);
-      }
-      return rating;
-  }
+
   
   // Initialize components for Routine "instructions"
   instructionsClock = new util.Clock();
