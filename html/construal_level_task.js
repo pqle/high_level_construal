@@ -71,7 +71,6 @@ psychoJS.start({
     {name: 'future_scenario_conditions.csv', path: './resources/future_scenario_conditions.csv'},
     {name: 'present_scenario_conditions.csv', path: './resources/present_scenario_conditions.csv'},
     {name: 'choose_condition_practice.csv', path: './resources/choose_condition_practice.csv'},
-    {name: 'present_scenario_conditions_practice.csv', path: './resources/present_scenario_conditions_practice.csv'},
   ],
   });
 
