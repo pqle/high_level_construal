@@ -83,7 +83,7 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
 
     # Setup the Window
     win = visual.Window(
-        size=[2560, 1440], fullscr=True, screen=0,
+        size=[1280, 720], fullscr=False, screen=0,
         winType='pyglet', allowGUI=False, allowStencil=False,
         monitor='testMonitor', color=[-1,-1,-1], colorSpace='rgb',
         blendMode='avg', useFBO=True,
@@ -100,7 +100,7 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
 
     # Initialize components for Routine "setup"
     setupClock = core.Clock()
-    conditions_file_name = 'choose_condition.csv'
+    conditions_file_name = os.path.join('conditions', 'choose_condition.csv')
     scenario_trials_selection = randint(low=0,high=15,size=1)
     action_trials_selection = randint(low=0,high=47,size=3)
 
@@ -117,7 +117,7 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
 
     # session 0 is a practice session
     if expInfo['session'] == '0':
-        conditions_file_name = 'choose_condition_practice.csv'
+        conditions_file_name = os.path.join('conditions', 'choose_condition_practice.csv')
         scenario_trials_selection = [0]
         action_trials_selection = [0, 1, 2]
         start_text_str = 'Practice for construal level task'
@@ -481,7 +481,7 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
             # set up handler to look after randomisation of conditions etc
             action_trials = data.TrialHandler(nReps=1, method='random',
                 extraInfo=expInfo, originPath=-1,
-                trialList=data.importConditions('action_conditions.csv', selection=action_trials_selection),
+                trialList=data.importConditions('conditions/action_conditions.csv', selection=action_trials_selection),
                 seed=None, name='action_trials')
             thisExp.addLoop(action_trials)  # add the loop to the experiment
 

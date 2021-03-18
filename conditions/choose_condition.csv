@@ -1,0 +1,5 @@
+condition_type,scenario_file,cue_text
+present,conditions/present_scenario_conditions.csv,RIGHT NOW
+present,conditions/present_scenario_conditions.csv,RIGHT NOW
+future,conditions/future_scenario_conditions.csv,FIVE YEARS FROM NOW
+future,conditions/future_scenario_conditions.csv,FIVE YEARS FROM NOW
