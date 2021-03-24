@@ -17,7 +17,7 @@ psychoJS.openWindow({
 
 // store info about the experiment session:
 let expName = 'construal_level_task';  // from the Builder filename that created this script
-let expInfo = {'participant': '', 'session': '', 'run_number': '1'};
+let expInfo = {'workerId': ''};
 
 // Start code blocks for 'Before Experiment'
 // schedule the experiment:
@@ -87,8 +87,6 @@ var start_text_str;
 var start_text_duration;
 var end_text_str;
 var end_text_duration;
-var scenario_trials_selection;
-var action_trials_selection;
 var rating_keys;
 var instructionsClock;
 var instruction;
@@ -144,23 +142,23 @@ function experimentInit() {
   _pj_snippets(_pj);
   conditions_file_name = "choose_condition.csv";
   
-  if (is_first) {
+  //if (is_first) {
       start_text_str = "Calibrating scanner";
       start_text_duration = 120;
       end_text_str = "The task has ended. The next task will start in a few seconds.";
       end_text_duration = 10;
-  } else {
-      start_text_str = "";
-      start_text_duration = 0.1;
-      end_text_str = "The task has ended. Waiting for researcher to start next task.";
-      end_text_duration = 120;
-  }
-  if ((expInfo["session"] === "0")) {
-      conditions_file_name = "choose_condition_practice.csv";
-      scenario_trials_selection = [0];
-      action_trials_selection = [0, 1, 2];
-      start_text_str = "Practice for construal level task";
-  }
+  //} else {
+  //    start_text_str = "";
+  //    start_text_duration = 0.1;
+  //   end_text_str = "The task has ended. Waiting for researcher to start next task.";
+  //    end_text_duration = 120;
+  //}
+  //if ((expInfo["session"] === "0")) {
+  //    conditions_file_name = "choose_condition_practice.csv";
+  //    scenario_trials_selection = [0];
+  //    action_trials_selection = [0, 1, 2];
+  //    start_text_str = "Practice for construal level task";
+  //}
   rating_keys = ["5", "6", "7", "8", "9"];
   function convert_key_to_rating(key) {
       var rating;
@@ -680,6 +678,8 @@ function blockLoopEnd() {
 }
 
 
+var scenario_trials_selection;
+var action_trials_selection;
 var block_setupComponents;
 function block_setupRoutineBegin(snapshot) {
   return function () {
