@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.1.2),
-    on March 24, 2021, at 15:21
+    on March 24, 2021, at 15:33
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -152,7 +152,7 @@ attention_check = visual.TextStim(win=win, name='attention_check',
     depth=-2.0);
 attention_check_rating = visual.Slider(win=win, name='attention_check_rating',
     size=(1.0, 0.025), pos=(0, -0.3), units=None,
-    labels=['not at all\noften','somewhat\noften','moderately\noften','very\noften','extremely\noften'], ticks=(1, 2, 3, 4, 5), granularity=0,
+    labels=['not at all\noften', 'somewhat\noften', 'moderately\noften', 'very\noften', 'extremely\noften'], ticks=(1, 2, 3, 4, 5), granularity=0,
     style='rating', styleTweaks=('triangleMarker',), opacity=1,
     color='LightGray', fillColor='Red', borderColor='White', colorSpace='rgb',
     font='Helvetica', labelHeight=0.03,
