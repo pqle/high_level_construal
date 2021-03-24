@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.1.2),
@@ -48,7 +48,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['workerId'], expName,
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='C:\\Users\\Phuong\\OneDrive - The Ohio State University\\Fujita Lab\\Experiments\\Berkman smoking pilot SU19\\Scanner task pilot SP21\\Pilot Github Materials\\high_level_construal\\construal_level_task.py',
+    originPath='C:\\Users\\Phuong\\OneDrive - The Ohio State University\\Fujita Lab\\Experiments\\Berkman smoking pilot SU19\\Scanner task pilot SP21\\Pilot Github Materials\\high_level_construal\\construal_level_task_lastrun.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -152,7 +152,7 @@ attention_check = visual.TextStim(win=win, name='attention_check',
     depth=-2.0);
 attention_check_rating = visual.Slider(win=win, name='attention_check_rating',
     size=(1.0, 0.025), pos=(0, -0.3), units=None,
-    labels=['not at all\noften','somewhat\noften','moderately\noften','very\noften','extremely\noften'], ticks=(1, 2, 3, 4, 5), granularity=0,
+    labels=[attention_check_label], ticks=(1, 2, 3, 4, 5), granularity=0,
     style='rating', styleTweaks=('triangleMarker',), opacity=1,
     color='LightGray', fillColor='Red', borderColor='White', colorSpace='rgb',
     font='Helvetica', labelHeight=0.03,
