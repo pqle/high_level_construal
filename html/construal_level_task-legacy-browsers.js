@@ -227,7 +227,7 @@ function experimentInit() {
   attention_check_rating = new visual.Slider({
     win: psychoJS.window, name: 'attention_check_rating',
     size: [1.0, 0.025], pos: [0, (- 0.3)], units: 'height',
-    labels: attention_check_label, ticks: [1, 2, 3, 4, 5],
+    labels: ["not at all\noften", "somewhat\noften", "moderately\noften", "very\noften", "extremely\noften"], ticks: [1, 2, 3, 4, 5],
     granularity: 0, style: ["RATING", "TRIANGLE_MARKER"],
     color: new util.Color('LightGray'), 
     fontFamily: 'Helvetica', bold: true, italic: false, depth: -3, 

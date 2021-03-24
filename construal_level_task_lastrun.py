@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.1.2),
-    on March 24, 2021, at 15:32
+    on March 24, 2021, at 16:03
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -36,8 +36,8 @@ os.chdir(_thisDir)
 
 # Store info about the experiment session
 psychopyVersion = '2021.1.2'
-expName = 'construal_level'  # from the Builder filename that created this script
-expInfo = {'workerId': '9999999'}
+expName = 'imagination_task'  # from the Builder filename that created this script
+expInfo = {'workerId': '9999999', 'assignmentId': '', 'hitId': ''}
 expInfo['date'] = data.getDateStr()  # add a simple timestamp
 expInfo['expName'] = expName
 expInfo['psychopyVersion'] = psychopyVersion
@@ -99,6 +99,7 @@ end_text_duration = 10
 #    scenario_trials_selection = [0]
 #    action_trials_selection = [0, 1, 2]
 #    start_text_str = 'Practice for construal level task'
+
 rating_keys = ['5', '6', '7', '8', '9']
 
 def convert_key_to_rating(key):
@@ -113,7 +114,7 @@ def convert_key_to_rating(key):
 # Initialize components for Routine "instructions"
 instructionsClock = core.Clock()
 instruction = visual.TextStim(win=win, name='instruction',
-    text='When you are ready, press the space bar to continue.',
+    text='IMPORTANT: You should respond to questions through out this task by pressing the "5, 6, 7, 8, 9" buttons.\n\nWhen you are ready, press the space bar to continue.',
     font='Helvetica',
     pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1, 
@@ -229,7 +230,7 @@ quitting_intention_keyboard = keyboard.Keyboard()
 # Initialize components for Routine "end"
 endClock = core.Clock()
 end_text = visual.TextStim(win=win, name='end_text',
-    text='Thank you!',
+    text='Below is more information about the purpose of this survey. After reviewing this information to your satisfaction, continue on to the next screen to ensure that your survey response is recorded. Thank you!\n \n\nThank you for your participation. Research in psychology couldn\'t be done without the help of people like you, so we really appreciate you taking the time to be in our experiment.  We are examining the influence of mental representations on how people behave in situations requiring self-control.  For example, in previous experiments in our lab, we found that mental representations that cause people to think more globally and "big picture" (high-level construals) lead to greater self-control as compared to representations that cause thinking in a more local, "seeing the trees instead of the forest" manner (low-level construals). In this study, you completed tasks designed to evoke either a high-level or low-level mindset. You then answered a variety of questions about your behavioral description preferences. We expect that the condition you were assigned to may have impacted some of the answers you provided. \nYour data will remain confidential. Data are kept in locked areas. Your de-identified information may be used or shared with other researchers without your additional informed consent.\nWe ask that you do not discuss this study with others to maintain the integrity of the study, as it will be continuing.  We would like to thank you in advance for your help. If you have any questions about this study, please contact Kentaro Fujita (fujita.5@osu.edu).  If you have questions or concerns about your rights as a research participant, contact Sandra Meadows at The Office of Responsible Research Practices, 1-800-678-6251 or 1-614-688-4792 (see also their website at http://www.orrp.osu.edu/).\n\nPlease continue on to the next screen to ensure that your survey response is recorded. Thank you!',
     font='Helvetica',
     pos=(0, 0), height=0.075, wrapWidth=None, ori=0.0, 
     color='white', colorSpace='rgb', opacity=None, 
