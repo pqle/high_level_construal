@@ -54,28 +54,9 @@ dialogCancelScheduler.add(quitPsychoJS, '', false);
 psychoJS.start({
   expName: expName,
   expInfo: expInfo,
-  resources: [
-    {name: 'action_conditions.csv', path: './resources/action_conditions.csv'},
-    {name: 'choose_condition.csv', path: './resources/choose_condition.csv'},
-    {name: 'future_scenario_conditions.csv', path: './resources/future_scenario_conditions.csv'},
-    {name: 'present_scenario_conditions.csv', path: './resources/present_scenario_conditions.csv'},
-    {name: 'choose_condition_practice.csv', path: './resources/choose_condition_practice.csv'},
-  ],
   });
 
 psychoJS.experimentLogger.setLevel(core.Logger.ServerLevel.DEBUG);
-
-// download audio resources based on specific scenarios to be displayed to participant
-function download_audio_resources(trial_list) {
-  let audio_files = [];
-  for (const element of trial_list) {
-    audio_files.push({name: (element.block1_audio), path: ('./resources/'.concat(element.block1_audio))});
-    audio_files.push({name: (element.block2_audio), path: ('./resources/'.concat(element.block2_audio))});
-    audio_files.push({name: (element.block3_audio), path: ('./resources/'.concat(element.block3_audio))});
-  }
-
-  psychoJS.downloadResources(audio_files);
-}
 
 
 var frameDur;
@@ -98,40 +79,10 @@ function updateInfo() {
   return Scheduler.Event.NEXT;
 }
 
-var _pj;
-function _pj_snippets(container) {
-    function in_es6(left, right) {
-        if (((right instanceof Array) || ((typeof right) === "string"))) {
-            return (right.indexOf(left) > (- 1));
-        } else {
-            if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {
-                return right.has(left);
-            } else {
-                return (left in right);
-            }
-        }
-    }
-    container["in_es6"] = in_es6;
-    return container;
-}
-_pj = {};
-_pj_snippets(_pj);
-
-rating_keys = ["5", "6", "7", "8", "9"];
-function convert_key_to_rating(key) {
-    var rating;
-    rating = null;
-    if (_pj.in_es6(key, rating_keys)) {
-        rating = Number.parseInt(key);
-        rating = (rating - 4);
-    }
-    return rating;
-}
 
 var setupClock;
 var _pj;
 var conditions_file_name;
-var is_first;
 var start_text_str;
 var start_text_duration;
 var end_text_str;
@@ -167,14 +118,32 @@ var quitting_intention_rating;
 var quitting_intention_keyboard;
 var endClock;
 var end_text;
+var end_key_resp;
 var globalClock;
 var routineTimer;
 function experimentInit() {
   // Initialize components for Routine "setup"
   setupClock = new util.Clock();
+  var _pj;
+  function _pj_snippets(container) {
+      function in_es6(left, right) {
+          if (((right instanceof Array) || ((typeof right) === "string"))) {
+              return (right.indexOf(left) > (- 1));
+          } else {
+              if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {
+                  return right.has(left);
+              } else {
+                  return (left in right);
+              }
+          }
+      }
+      container["in_es6"] = in_es6;
+      return container;
+  }
+  _pj = {};
+  _pj_snippets(_pj);
   conditions_file_name = "choose_condition.csv";
   
-  is_first = false;
   if (is_first) {
       start_text_str = "Calibrating scanner";
       start_text_duration = 120;
@@ -183,8 +152,8 @@ function experimentInit() {
   } else {
       start_text_str = "";
       start_text_duration = 0.1;
-      end_text_str = "";
-      end_text_duration = 0.1;
+      end_text_str = "The task has ended. Waiting for researcher to start next task.";
+      end_text_duration = 120;
   }
   if ((expInfo["session"] === "0")) {
       conditions_file_name = "choose_condition_practice.csv";
@@ -192,7 +161,16 @@ function experimentInit() {
       action_trials_selection = [0, 1, 2];
       start_text_str = "Practice for construal level task";
   }
-
+  rating_keys = ["5", "6", "7", "8", "9"];
+  function convert_key_to_rating(key) {
+      var rating;
+      rating = null;
+      if (_pj.in_es6(key, rating_keys)) {
+          rating = Number.parseInt(key);
+          rating = (rating - 4);
+      }
+      return rating;
+  }
   
   // Initialize components for Routine "instructions"
   instructionsClock = new util.Clock();
@@ -367,6 +345,8 @@ function experimentInit() {
     color: new util.Color('white'),  opacity: undefined,
     depth: 0.0 
   });
+  
+  end_key_resp = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
   // Create some handy timers
   globalClock = new util.Clock();  // to track the time since experiment started
@@ -614,8 +594,6 @@ function scenario_trialsLoopBegin(scenario_trialsLoopScheduler) {
     trialList: TrialHandler.importConditions(psychoJS.serverManager, scenario_file, scenario_trials_selection),
     seed: undefined, name: 'scenario_trials'
   });
-  // Download audio resources
-  download_audio_resources(scenario_trials.trialList);
   psychoJS.experiment.addLoop(scenario_trials); // add the loop to the experiment
   currentLoop = scenario_trials;  // we're now the current loop
 
@@ -657,7 +635,7 @@ function action_trialsLoopBegin(action_trialsLoopScheduler) {
     psychoJS: psychoJS,
     nReps: 1, method: TrialHandler.Method.RANDOM,
     extraInfo: expInfo, originPath: undefined,
-    trialList: TrialHandler.importConditions(psychoJS.serverManager, 'action_conditions.csv', action_trials_selection),
+    trialList: TrialHandler.importConditions(psychoJS.serverManager, 'conditions/action_conditions.csv', action_trials_selection),
     seed: undefined, name: 'action_trials'
   });
   psychoJS.experiment.addLoop(action_trials); // add the loop to the experiment
@@ -1588,6 +1566,7 @@ function quitting_intentionRoutineEnd(snapshot) {
 }
 
 
+var _end_key_resp_allKeys;
 var endComponents;
 function endRoutineBegin(snapshot) {
   return function () {
@@ -1597,9 +1576,13 @@ function endRoutineBegin(snapshot) {
     frameN = -1;
     continueRoutine = true; // until we're told otherwise
     // update component parameters for each repeat
+    end_key_resp.keys = undefined;
+    end_key_resp.rt = undefined;
+    _end_key_resp_allKeys = [];
     // keep track of which components have finished
     endComponents = [];
     endComponents.push(end_text);
+    endComponents.push(end_key_resp);
     
     endComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -1631,6 +1614,35 @@ function endRoutineEachFrame(snapshot) {
     if (end_text.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       end_text.setAutoDraw(false);
     }
+    
+    // *end_key_resp* updates
+    if (t >= 0.0 && end_key_resp.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      end_key_resp.tStart = t;  // (not accounting for frame time here)
+      end_key_resp.frameNStart = frameN;  // exact frame index
+      
+      // keyboard checking is just starting
+      psychoJS.window.callOnFlip(function() { end_key_resp.clock.reset(); });  // t=0 on next screen flip
+      psychoJS.window.callOnFlip(function() { end_key_resp.start(); }); // start on screen flip
+      psychoJS.window.callOnFlip(function() { end_key_resp.clearEvents(); });
+    }
+
+    frameRemains = 0.0 + asarray(end_text_duration) - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    if (end_key_resp.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      end_key_resp.status = PsychoJS.Status.FINISHED;
+  }
+
+    if (end_key_resp.status === PsychoJS.Status.STARTED) {
+      let theseKeys = end_key_resp.getKeys({keyList: ['space'], waitRelease: false});
+      _end_key_resp_allKeys = _end_key_resp_allKeys.concat(theseKeys);
+      if (_end_key_resp_allKeys.length > 0) {
+        end_key_resp.keys = _end_key_resp_allKeys[_end_key_resp_allKeys.length - 1].name;  // just the last key pressed
+        end_key_resp.rt = _end_key_resp_allKeys[_end_key_resp_allKeys.length - 1].rt;
+        // a response ends the routine
+        continueRoutine = false;
+      }
+    }
+    
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -1666,6 +1678,13 @@ function endRoutineEnd(snapshot) {
         thisComponent.setAutoDraw(false);
       }
     });
+    psychoJS.experiment.addData('end_key_resp.keys', end_key_resp.keys);
+    if (typeof end_key_resp.keys !== 'undefined') {  // we had a response
+        psychoJS.experiment.addData('end_key_resp.rt', end_key_resp.rt);
+        routineTimer.reset();
+        }
+    
+    end_key_resp.stop();
     // the Routine "end" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
