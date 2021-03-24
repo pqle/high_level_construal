@@ -28,7 +28,7 @@ psychoJS.openWindow({
 
 // store info about the experiment session:
 let expName = 'construal_level_task';  // from the Builder filename that created this script
-let expInfo = {'workerId': ''};
+let expInfo = {'workerId': '9999999'};
 
 // Start code blocks for 'Before Experiment'
 // schedule the experiment:
