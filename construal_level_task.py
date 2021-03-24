@@ -83,7 +83,7 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
 
     # Setup the Window
     win = visual.Window(
-        size=[2560, 1440], fullscr=True, screen=0,
+        size=[1280, 720], fullscr=False, screen=0,
         winType='pyglet', allowGUI=False, allowStencil=False,
         monitor='testMonitor', color=[-1,-1,-1], colorSpace='rgb',
         blendMode='avg', useFBO=True,
@@ -100,7 +100,7 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
 
     # Initialize components for Routine "setup"
     setupClock = core.Clock()
-    conditions_file_name = 'choose_condition.csv'
+    conditions_file_name = os.path.join('conditions', 'choose_condition.csv')
     scenario_trials_selection = randint(low=0,high=15,size=1)
     action_trials_selection = randint(low=0,high=47,size=3)
 
@@ -112,12 +112,12 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
     else:
         start_text_str = ''
         start_text_duration = 0.1
-        end_text_str = ''
-        end_text_duration = 0.1
+        end_text_str = 'The task has ended. Waiting for researcher to start next task.'
+        end_text_duration = 120
 
     # session 0 is a practice session
     if expInfo['session'] == '0':
-        conditions_file_name = 'choose_condition_practice.csv'
+        conditions_file_name = os.path.join('conditions', 'choose_condition_practice.csv')
         scenario_trials_selection = [0]
         action_trials_selection = [0, 1, 2]
         start_text_str = 'Practice for construal level task'
@@ -248,6 +248,7 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
         color='white', colorSpace='rgb', opacity=None,
         languageStyle='LTR',
         depth=0.0);
+    end_key_resp = keyboard.Keyboard()
 
     # Create some handy timers
     globalClock = core.Clock()  # to track the time since experiment started
@@ -481,7 +482,7 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
             # set up handler to look after randomisation of conditions etc
             action_trials = data.TrialHandler(nReps=1, method='random',
                 extraInfo=expInfo, originPath=-1,
-                trialList=data.importConditions('action_conditions.csv', selection=action_trials_selection),
+                trialList=data.importConditions('conditions/action_conditions.csv', selection=action_trials_selection),
                 seed=None, name='action_trials')
             thisExp.addLoop(action_trials)  # add the loop to the experiment
 
@@ -1179,8 +1180,11 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
     # ------Prepare to start Routine "end"-------
     continueRoutine = True
     # update component parameters for each repeat
+    end_key_resp.keys = []
+    end_key_resp.rt = []
+    _end_key_resp_allKeys = []
     # keep track of which components have finished
-    endComponents = [end_text]
+    endComponents = [end_text, end_key_resp]
     for thisComponent in endComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
@@ -1220,6 +1224,36 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
                 win.timeOnFlip(end_text, 'tStopRefresh')  # time at next scr refresh
                 end_text.setAutoDraw(False)
 
+        # *end_key_resp* updates
+        waitOnFlip = False
+        if end_key_resp.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
+            # keep track of start time/frame for later
+            end_key_resp.frameNStart = frameN  # exact frame index
+            end_key_resp.tStart = t  # local t and not account for scr refresh
+            end_key_resp.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(end_key_resp, 'tStartRefresh')  # time at next scr refresh
+            end_key_resp.status = STARTED
+            # keyboard checking is just starting
+            waitOnFlip = True
+            win.callOnFlip(end_key_resp.clock.reset)  # t=0 on next screen flip
+            win.callOnFlip(end_key_resp.clearEvents, eventType='keyboard')  # clear events on next screen flip
+        if end_key_resp.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > end_key_resp.tStartRefresh + asarray(end_text_duration) - frameTolerance:
+                # keep track of stop time/frame for later
+                end_key_resp.tStop = t  # not accounting for scr refresh
+                end_key_resp.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(end_key_resp, 'tStopRefresh')  # time at next scr refresh
+                end_key_resp.status = FINISHED
+        if end_key_resp.status == STARTED and not waitOnFlip:
+            theseKeys = end_key_resp.getKeys(keyList=['space'], waitRelease=False)
+            _end_key_resp_allKeys.extend(theseKeys)
+            if len(_end_key_resp_allKeys):
+                end_key_resp.keys = _end_key_resp_allKeys[-1].name  # just the last key pressed
+                end_key_resp.rt = _end_key_resp_allKeys[-1].rt
+                # a response ends the routine
+                continueRoutine = False
+
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
             core.quit()
@@ -1243,6 +1277,15 @@ def clt(participant_id: str, session: str, run_number: str, is_first: bool):
             thisComponent.setAutoDraw(False)
     thisExp.addData('end_text.started', end_text.tStartRefresh)
     thisExp.addData('end_text.stopped', end_text.tStopRefresh)
+    # check responses
+    if end_key_resp.keys in ['', [], None]:  # No response was made
+        end_key_resp.keys = None
+    thisExp.addData('end_key_resp.keys', end_key_resp.keys)
+    if end_key_resp.keys != None:  # we had a response
+        thisExp.addData('end_key_resp.rt', end_key_resp.rt)
+    thisExp.addData('end_key_resp.started', end_key_resp.tStartRefresh)
+    thisExp.addData('end_key_resp.stopped', end_key_resp.tStopRefresh)
+    thisExp.nextEntry()
     # the Routine "end" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
 
@@ -1294,11 +1337,10 @@ class Cli:
                             )
 
         parser.add_argument('--is_first',
-                            metavar='First in block',
-                            required=True,
-                            help='True if the first run in a block, False if not.'
-                                 'Example: --is_first True',
-                            type=bool,
+                            required=False,
+                            help='Include argument if the first run in a block.'
+                                 'Example: --is_first',
+                            action='store_true',
                             dest='is_first'
                             )
 
