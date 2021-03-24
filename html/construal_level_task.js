@@ -94,9 +94,7 @@ function updateInfo() {
 var setupClock;
 var _pj;
 var conditions_file_name;
-var start_text_str;
 var start_text_duration;
-var end_text_str;
 var end_text_duration;
 var rating_keys;
 var instructionsClock;
@@ -154,10 +152,10 @@ function experimentInit() {
   conditions_file_name = "choose_condition.csv";
   
   //if (is_first) {
-      start_text_str = "Calibrating scanner";
-      start_text_duration = 120;
-      end_text_str = "The task has ended. The next task will start in a few seconds.";
-      end_text_duration = 10;
+  //    start_text_str = "Calibrating scanner";
+  start_text_duration = 120;
+  //    end_text_str = "The task has ended. The next task will start in a few seconds.";
+  end_text_duration = 10;
   //} else {
   //    start_text_str = "";
   //    start_text_duration = 0.1;
@@ -170,7 +168,9 @@ function experimentInit() {
   //    action_trials_selection = [0, 1, 2];
   //    start_text_str = "Practice for construal level task";
   //}
+  
   rating_keys = ["5", "6", "7", "8", "9"];
+  
   function convert_key_to_rating(key) {
       var rating;
       rating = null;
@@ -186,7 +186,7 @@ function experimentInit() {
   instruction = new visual.TextStim({
     win: psychoJS.window,
     name: 'instruction',
-    text: start_text_str,
+    text: 'When you are ready, press the space bar to continue.',
     font: 'Helvetica',
     units: undefined, 
     pos: [0, 0], height: 0.05,  wrapWidth: undefined, ori: 0,
@@ -238,7 +238,7 @@ function experimentInit() {
   attention_check_rating = new visual.Slider({
     win: psychoJS.window, name: 'attention_check_rating',
     size: [1.0, 0.025], pos: [0, (- 0.3)], units: 'height',
-    labels: ["not at all\noften", "somewhat\noften", "moderately\noften", "very\noften", "extremely\noften"], ticks: [1, 2, 3, 4, 5],
+    labels: attention_check_label, ticks: [1, 2, 3, 4, 5],
     granularity: 0, style: ["RATING", "TRIANGLE_MARKER"],
     color: new util.Color('LightGray'), 
     fontFamily: 'Helvetica', bold: true, italic: false, depth: -3, 
@@ -347,7 +347,7 @@ function experimentInit() {
   end_text = new visual.TextStim({
     win: psychoJS.window,
     name: 'end_text',
-    text: end_text_str,
+    text: 'Thank you!',
     font: 'Helvetica',
     units: undefined, 
     pos: [0, 0], height: 0.075,  wrapWidth: undefined, ori: 0.0,
@@ -505,7 +505,7 @@ function instructionsRoutineEachFrame(snapshot) {
   }
 
     if (key_resp.status === PsychoJS.Status.STARTED) {
-      let theseKeys = key_resp.getKeys({keyList: ['apostrophe'], waitRelease: false});
+      let theseKeys = key_resp.getKeys({keyList: ['space'], waitRelease: false});
       _key_resp_allKeys = _key_resp_allKeys.concat(theseKeys);
       if (_key_resp_allKeys.length > 0) {
         key_resp.keys = _key_resp_allKeys[_key_resp_allKeys.length - 1].name;  // just the last key pressed
