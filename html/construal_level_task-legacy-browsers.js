@@ -195,6 +195,8 @@ function experimentInit() {
   
   var MturkNUMCODE = Math.floor(Math.random() * 999999999) + 1; 
   var MturkCODE = "Your Mturk completion code is: " + MturkNUMCODE + ". Please press the space bar to ensure your survey response is recorded. Thank you!"
+  
+  expInfo["MturkCODE"] = MturkNUMCODE
   // Initialize components for Routine "instructions"
   instructionsClock = new util.Clock();
   instruction = new visual.TextStim({
@@ -1660,6 +1662,7 @@ function endRoutineBegin(snapshot) {
     endClock.reset(); // clock
     frameN = -1;
     continueRoutine = true; // until we're told otherwise
+    routineTimer.add(60.000000);
     // update component parameters for each repeat
     end_key_resp.keys = undefined;
     end_key_resp.rt = undefined;
@@ -1695,7 +1698,7 @@ function endRoutineEachFrame(snapshot) {
       debrief_text1.setAutoDraw(true);
     }
 
-    frameRemains = 0.0 + 10.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 60.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (debrief_text1.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       debrief_text1.setAutoDraw(false);
     }
@@ -1712,7 +1715,7 @@ function endRoutineEachFrame(snapshot) {
       psychoJS.window.callOnFlip(function() { end_key_resp.clearEvents(); });
     }
 
-    frameRemains = 0.0 + asarray(end_text_duration) - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 60.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (end_key_resp.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       end_key_resp.status = PsychoJS.Status.FINISHED;
   }
@@ -1746,7 +1749,7 @@ function endRoutineEachFrame(snapshot) {
     });
     
     // refresh the screen if continuing
-    if (continueRoutine) {
+    if (continueRoutine && routineTimer.getTime() > 0) {
       return Scheduler.Event.FLIP_REPEAT;
     } else {
       return Scheduler.Event.NEXT;
@@ -1770,9 +1773,6 @@ function endRoutineEnd(snapshot) {
         }
     
     end_key_resp.stop();
-    // the Routine "end" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset();
-    
     return Scheduler.Event.NEXT;
   };
 }
@@ -1787,6 +1787,7 @@ function end2RoutineBegin(snapshot) {
     end2Clock.reset(); // clock
     frameN = -1;
     continueRoutine = true; // until we're told otherwise
+    routineTimer.add(60.000000);
     // update component parameters for each repeat
     end_key_resp_2.keys = undefined;
     end_key_resp_2.rt = undefined;
@@ -1822,7 +1823,7 @@ function end2RoutineEachFrame(snapshot) {
       debrief_text1_2.setAutoDraw(true);
     }
 
-    frameRemains = 0.0 + 10.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 30.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (debrief_text1_2.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       debrief_text1_2.setAutoDraw(false);
     }
@@ -1839,7 +1840,7 @@ function end2RoutineEachFrame(snapshot) {
       psychoJS.window.callOnFlip(function() { end_key_resp_2.clearEvents(); });
     }
 
-    frameRemains = 0.0 + asarray(end_text_duration) - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 60.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (end_key_resp_2.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       end_key_resp_2.status = PsychoJS.Status.FINISHED;
   }
@@ -1873,7 +1874,7 @@ function end2RoutineEachFrame(snapshot) {
     });
     
     // refresh the screen if continuing
-    if (continueRoutine) {
+    if (continueRoutine && routineTimer.getTime() > 0) {
       return Scheduler.Event.FLIP_REPEAT;
     } else {
       return Scheduler.Event.NEXT;
@@ -1897,9 +1898,6 @@ function end2RoutineEnd(snapshot) {
         }
     
     end_key_resp_2.stop();
-    // the Routine "end2" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset();
-    
     return Scheduler.Event.NEXT;
   };
 }
@@ -1914,6 +1912,7 @@ function end3RoutineBegin(snapshot) {
     end3Clock.reset(); // clock
     frameN = -1;
     continueRoutine = true; // until we're told otherwise
+    routineTimer.add(60.000000);
     // update component parameters for each repeat
     end_key_resp_3.keys = undefined;
     end_key_resp_3.rt = undefined;
@@ -1949,7 +1948,7 @@ function end3RoutineEachFrame(snapshot) {
       debrief_text1_3.setAutoDraw(true);
     }
 
-    frameRemains = 0.0 + 10.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 60.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (debrief_text1_3.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       debrief_text1_3.setAutoDraw(false);
     }
@@ -1966,7 +1965,7 @@ function end3RoutineEachFrame(snapshot) {
       psychoJS.window.callOnFlip(function() { end_key_resp_3.clearEvents(); });
     }
 
-    frameRemains = 0.0 + asarray(end_text_duration) - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 60.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (end_key_resp_3.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       end_key_resp_3.status = PsychoJS.Status.FINISHED;
   }
@@ -2000,7 +1999,7 @@ function end3RoutineEachFrame(snapshot) {
     });
     
     // refresh the screen if continuing
-    if (continueRoutine) {
+    if (continueRoutine && routineTimer.getTime() > 0) {
       return Scheduler.Event.FLIP_REPEAT;
     } else {
       return Scheduler.Event.NEXT;
@@ -2024,9 +2023,6 @@ function end3RoutineEnd(snapshot) {
         }
     
     end_key_resp_3.stop();
-    // the Routine "end3" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset();
-    
     return Scheduler.Event.NEXT;
   };
 }
@@ -2041,6 +2037,7 @@ function end4RoutineBegin(snapshot) {
     end4Clock.reset(); // clock
     frameN = -1;
     continueRoutine = true; // until we're told otherwise
+    routineTimer.add(60.000000);
     // update component parameters for each repeat
     end_key_resp_4.keys = undefined;
     end_key_resp_4.rt = undefined;
@@ -2076,7 +2073,7 @@ function end4RoutineEachFrame(snapshot) {
       debrief_text1_4.setAutoDraw(true);
     }
 
-    frameRemains = 0.0 + 10.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 60.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (debrief_text1_4.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       debrief_text1_4.setAutoDraw(false);
     }
@@ -2093,7 +2090,7 @@ function end4RoutineEachFrame(snapshot) {
       psychoJS.window.callOnFlip(function() { end_key_resp_4.clearEvents(); });
     }
 
-    frameRemains = 0.0 + asarray(end_text_duration) - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 60.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (end_key_resp_4.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       end_key_resp_4.status = PsychoJS.Status.FINISHED;
   }
@@ -2127,7 +2124,7 @@ function end4RoutineEachFrame(snapshot) {
     });
     
     // refresh the screen if continuing
-    if (continueRoutine) {
+    if (continueRoutine && routineTimer.getTime() > 0) {
       return Scheduler.Event.FLIP_REPEAT;
     } else {
       return Scheduler.Event.NEXT;
@@ -2151,9 +2148,6 @@ function end4RoutineEnd(snapshot) {
         }
     
     end_key_resp_4.stop();
-    // the Routine "end4" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset();
-    
     return Scheduler.Event.NEXT;
   };
 }
@@ -2168,6 +2162,7 @@ function Mturk_Completion_CodeRoutineBegin(snapshot) {
     Mturk_Completion_CodeClock.reset(); // clock
     frameN = -1;
     continueRoutine = true; // until we're told otherwise
+    routineTimer.add(700.000000);
     // update component parameters for each repeat
     end_key_resp_5.keys = undefined;
     end_key_resp_5.rt = undefined;
@@ -2203,7 +2198,7 @@ function Mturk_Completion_CodeRoutineEachFrame(snapshot) {
       complete_code.setAutoDraw(true);
     }
 
-    frameRemains = 0.0 + 10.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 700.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (complete_code.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       complete_code.setAutoDraw(false);
     }
@@ -2220,7 +2215,7 @@ function Mturk_Completion_CodeRoutineEachFrame(snapshot) {
       psychoJS.window.callOnFlip(function() { end_key_resp_5.clearEvents(); });
     }
 
-    frameRemains = 0.0 + asarray(end_text_duration) - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 700.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (end_key_resp_5.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       end_key_resp_5.status = PsychoJS.Status.FINISHED;
   }
@@ -2254,7 +2249,7 @@ function Mturk_Completion_CodeRoutineEachFrame(snapshot) {
     });
     
     // refresh the screen if continuing
-    if (continueRoutine) {
+    if (continueRoutine && routineTimer.getTime() > 0) {
       return Scheduler.Event.FLIP_REPEAT;
     } else {
       return Scheduler.Event.NEXT;
@@ -2278,9 +2273,6 @@ function Mturk_Completion_CodeRoutineEnd(snapshot) {
         }
     
     end_key_resp_5.stop();
-    // the Routine "Mturk_Completion_Code" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset();
-    
     return Scheduler.Event.NEXT;
   };
 }

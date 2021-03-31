@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2021.1.2),
-    on March 31, 2021, at 10:46
+    on March 31, 2021, at 14:05
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -113,6 +113,8 @@ def convert_key_to_rating(key):
 import random
 MturkNUMCODE = random.randint(0, 999999999)
 MturkCODE = "Your Mturk completion code is: " + str(MturkNUMCODE) + ". Please press the space bar to ensure your survey response is recorded. Thank you!"
+
+expInfo['MturkCODE'] = MturkNUMCODE
 
 # Initialize components for Routine "instructions"
 instructionsClock = core.Clock()
@@ -268,7 +270,7 @@ end4Clock = core.Clock()
 debrief_text1_4 = visual.TextStim(win=win, name='debrief_text1_4',
     text='Your data will remain confidential. Data are kept in locked areas. Your de-identified information may be used or shared with other researchers without your additional informed consent. If you have any questions about this study, please contact Kentaro Fujita (fujita.5@osu.edu).  If you have questions or concerns about your rights as a research participant, contact Sandra Meadows at The Office of Responsible Research Practices, 1-800-678-6251 or 1-614-688-4792 (see also their website at http://www.orrp.osu.edu/).\n\nPress the space bar to continue.',
     font='Open Sans',
-    pos=(0, 0), height=0.1, wrapWidth=None, ori=0.0, 
+    pos=(0, 0), height=0.04, wrapWidth=None, ori=0.0, 
     color='white', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
     depth=0.0);
@@ -1306,7 +1308,7 @@ while continueRoutine:
         debrief_text1.setAutoDraw(True)
     if debrief_text1.status == STARTED:
         # is it time to stop? (based on global clock, using actual start)
-        if tThisFlipGlobal > debrief_text1.tStartRefresh + 10.0-frameTolerance:
+        if tThisFlipGlobal > debrief_text1.tStartRefresh + 30.0-frameTolerance:
             # keep track of stop time/frame for later
             debrief_text1.tStop = t  # not accounting for scr refresh
             debrief_text1.frameNStop = frameN  # exact frame index
@@ -1328,7 +1330,7 @@ while continueRoutine:
         win.callOnFlip(end_key_resp.clearEvents, eventType='keyboard')  # clear events on next screen flip
     if end_key_resp.status == STARTED:
         # is it time to stop? (based on global clock, using actual start)
-        if tThisFlipGlobal > end_key_resp.tStartRefresh + asarray(end_text_duration)-frameTolerance:
+        if tThisFlipGlobal > end_key_resp.tStartRefresh + asarray( )-frameTolerance:
             # keep track of stop time/frame for later
             end_key_resp.tStop = t  # not accounting for scr refresh
             end_key_resp.frameNStop = frameN  # exact frame index
@@ -1418,7 +1420,7 @@ while continueRoutine:
         debrief_text1_2.setAutoDraw(True)
     if debrief_text1_2.status == STARTED:
         # is it time to stop? (based on global clock, using actual start)
-        if tThisFlipGlobal > debrief_text1_2.tStartRefresh + 10.0-frameTolerance:
+        if tThisFlipGlobal > debrief_text1_2.tStartRefresh + 30.0-frameTolerance:
             # keep track of stop time/frame for later
             debrief_text1_2.tStop = t  # not accounting for scr refresh
             debrief_text1_2.frameNStop = frameN  # exact frame index
@@ -1438,14 +1440,6 @@ while continueRoutine:
         waitOnFlip = True
         win.callOnFlip(end_key_resp_2.clock.reset)  # t=0 on next screen flip
         win.callOnFlip(end_key_resp_2.clearEvents, eventType='keyboard')  # clear events on next screen flip
-    if end_key_resp_2.status == STARTED:
-        # is it time to stop? (based on global clock, using actual start)
-        if tThisFlipGlobal > end_key_resp_2.tStartRefresh + asarray(end_text_duration)-frameTolerance:
-            # keep track of stop time/frame for later
-            end_key_resp_2.tStop = t  # not accounting for scr refresh
-            end_key_resp_2.frameNStop = frameN  # exact frame index
-            win.timeOnFlip(end_key_resp_2, 'tStopRefresh')  # time at next scr refresh
-            end_key_resp_2.status = FINISHED
     if end_key_resp_2.status == STARTED and not waitOnFlip:
         theseKeys = end_key_resp_2.getKeys(keyList=['space'], waitRelease=False)
         _end_key_resp_2_allKeys.extend(theseKeys)
@@ -1530,7 +1524,7 @@ while continueRoutine:
         debrief_text1_3.setAutoDraw(True)
     if debrief_text1_3.status == STARTED:
         # is it time to stop? (based on global clock, using actual start)
-        if tThisFlipGlobal > debrief_text1_3.tStartRefresh + 10.0-frameTolerance:
+        if tThisFlipGlobal > debrief_text1_3.tStartRefresh + 30.0-frameTolerance:
             # keep track of stop time/frame for later
             debrief_text1_3.tStop = t  # not accounting for scr refresh
             debrief_text1_3.frameNStop = frameN  # exact frame index
@@ -1552,7 +1546,7 @@ while continueRoutine:
         win.callOnFlip(end_key_resp_3.clearEvents, eventType='keyboard')  # clear events on next screen flip
     if end_key_resp_3.status == STARTED:
         # is it time to stop? (based on global clock, using actual start)
-        if tThisFlipGlobal > end_key_resp_3.tStartRefresh + asarray(end_text_duration)-frameTolerance:
+        if tThisFlipGlobal > end_key_resp_3.tStartRefresh + asarray( )-frameTolerance:
             # keep track of stop time/frame for later
             end_key_resp_3.tStop = t  # not accounting for scr refresh
             end_key_resp_3.frameNStop = frameN  # exact frame index
@@ -1642,7 +1636,7 @@ while continueRoutine:
         debrief_text1_4.setAutoDraw(True)
     if debrief_text1_4.status == STARTED:
         # is it time to stop? (based on global clock, using actual start)
-        if tThisFlipGlobal > debrief_text1_4.tStartRefresh + 10.0-frameTolerance:
+        if tThisFlipGlobal > debrief_text1_4.tStartRefresh + 30.0-frameTolerance:
             # keep track of stop time/frame for later
             debrief_text1_4.tStop = t  # not accounting for scr refresh
             debrief_text1_4.frameNStop = frameN  # exact frame index
@@ -1664,7 +1658,7 @@ while continueRoutine:
         win.callOnFlip(end_key_resp_4.clearEvents, eventType='keyboard')  # clear events on next screen flip
     if end_key_resp_4.status == STARTED:
         # is it time to stop? (based on global clock, using actual start)
-        if tThisFlipGlobal > end_key_resp_4.tStartRefresh + asarray(end_text_duration)-frameTolerance:
+        if tThisFlipGlobal > end_key_resp_4.tStartRefresh + asarray( )-frameTolerance:
             # keep track of stop time/frame for later
             end_key_resp_4.tStop = t  # not accounting for scr refresh
             end_key_resp_4.frameNStop = frameN  # exact frame index
@@ -1754,7 +1748,7 @@ while continueRoutine:
         complete_code.setAutoDraw(True)
     if complete_code.status == STARTED:
         # is it time to stop? (based on global clock, using actual start)
-        if tThisFlipGlobal > complete_code.tStartRefresh + 10.0-frameTolerance:
+        if tThisFlipGlobal > complete_code.tStartRefresh + 700.0-frameTolerance:
             # keep track of stop time/frame for later
             complete_code.tStop = t  # not accounting for scr refresh
             complete_code.frameNStop = frameN  # exact frame index
@@ -1776,7 +1770,7 @@ while continueRoutine:
         win.callOnFlip(end_key_resp_5.clearEvents, eventType='keyboard')  # clear events on next screen flip
     if end_key_resp_5.status == STARTED:
         # is it time to stop? (based on global clock, using actual start)
-        if tThisFlipGlobal > end_key_resp_5.tStartRefresh + asarray(end_text_duration)-frameTolerance:
+        if tThisFlipGlobal > end_key_resp_5.tStartRefresh + asarray( )-frameTolerance:
             # keep track of stop time/frame for later
             end_key_resp_5.tStop = t  # not accounting for scr refresh
             end_key_resp_5.frameNStop = frameN  # exact frame index
