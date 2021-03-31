@@ -166,10 +166,9 @@ function experimentInit() {
       if (_pj.in_es6(key, rating_keys)) {
           rating = Number.parseInt(key);
           rating = (rating - 4);
-      }
+      };
       return rating;
-  }
-  
+  };
   // Initialize components for Routine "instructions"
   instructionsClock = new util.Clock();
   instruction = new visual.TextStim({
