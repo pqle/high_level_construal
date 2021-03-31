@@ -1,4 +1,4 @@
-﻿/***************************** 
+/***************************** 
  * Construal_Level_Task Test *
  *****************************/
 
@@ -28,7 +28,7 @@ psychoJS.openWindow({
 
 // store info about the experiment session:
 let expName = 'construal_level_task';  // from the Builder filename that created this script
-let expInfo = {'workerId': '9999999', 'assignmentId': '', 'hitId': ''};
+let expInfo = {'workerId': '', 'assignmentId': '', 'hitId': ''};
 
 // Start code blocks for 'Before Experiment'
 // schedule the experiment:
@@ -146,7 +146,7 @@ function experimentInit() {
       }
       container["in_es6"] = in_es6;
       return container;
-  }
+  };
   _pj = {};
   _pj_snippets(_pj);
   conditions_file_name = "choose_condition.csv";
@@ -172,8 +172,7 @@ function experimentInit() {
   rating_keys = ["5", "6", "7", "8", "9"];
   
   function convert_key_to_rating(key) {
-      var rating;
-      rating = null;
+      let rating = null;
       if (_pj.in_es6(key, rating_keys)) {
           rating = Number.parseInt(key);
           rating = (rating - 4);
