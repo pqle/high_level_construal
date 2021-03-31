@@ -75,7 +75,8 @@ function updateInfo() {
 
   // add info from the URL:
   util.addInfoFromUrl(expInfo);
-  
+  psychoJS.setRedirectUrls('https://www.TurkPrime.com/TakeLaunchedSurvey/DynamicKey', '');
+
   return Scheduler.Event.NEXT;
 }
 
@@ -334,10 +335,10 @@ function experimentInit() {
   end_text = new visual.TextStim({
     win: psychoJS.window,
     name: 'end_text',
-    text: 'Below is more information about the purpose of this survey. After reviewing this information to your satisfaction, continue on to the next screen to ensure that your survey response is recorded. Thank you!\n \n\nThank you for your participation. Research in psychology couldn\'t be done without the help of people like you, so we really appreciate you taking the time to be in our experiment.  We are examining the influence of mental representations on how people behave in situations requiring self-control.  For example, in previous experiments in our lab, we found that mental representations that cause people to think more globally and "big picture" (high-level construals) lead to greater self-control as compared to representations that cause thinking in a more local, "seeing the trees instead of the forest" manner (low-level construals). In this study, you completed tasks designed to evoke either a high-level or low-level mindset. You then answered a variety of questions about your behavioral description preferences. We expect that the condition you were assigned to may have impacted some of the answers you provided. \nYour data will remain confidential. Data are kept in locked areas. Your de-identified information may be used or shared with other researchers without your additional informed consent.\nWe ask that you do not discuss this study with others to maintain the integrity of the study, as it will be continuing.  We would like to thank you in advance for your help. If you have any questions about this study, please contact Kentaro Fujita (fujita.5@osu.edu).  If you have questions or concerns about your rights as a research participant, contact Sandra Meadows at The Office of Responsible Research Practices, 1-800-678-6251 or 1-614-688-4792 (see also their website at http://www.orrp.osu.edu/).\n\nPlease continue on to the next screen to ensure that your survey response is recorded. Thank you!',
+    text: 'Below is more information about the purpose of this survey. After reviewing this information to your satisfaction, continue on to the next screen to ensure that your survey response is recorded. Thank you!\n \n\nThank you for your participation. Research in psychology couldn\'t be done without the help of people like you, so we really appreciate you taking the time to be in our experiment.  We are examining the influence of mental representations on how people behave in situations requiring self-control.  For example, in previous experiments in our lab, we found that mental representations that cause people to think more globally and "big picture" (high-level construals) lead to greater self-control as compared to representations that cause thinking in a more local, "seeing the trees instead of the forest" manner (low-level construals). In this study, you completed tasks designed to evoke either a high-level or low-level mindset. You then answered a variety of questions about your behavioral description preferences. We expect that the condition you were assigned to may have impacted some of the answers you provided. \nYour data will remain confidential. Data are kept in locked areas. Your de-identified information may be used or shared with other researchers without your additional informed consent.\nWe ask that you do not discuss this study with others to maintain the integrity of the study, as it will be continuing.  We would like to thank you in advance for your help. If you have any questions about this study, please contact Kentaro Fujita (fujita.5@osu.edu).  If you have questions or concerns about your rights as a research participant, contact Sandra Meadows at The Office of Responsible Research Practices, 1-800-678-6251 or 1-614-688-4792 (see also their website at http://www.orrp.osu.edu/).\n\nPlease press the space bar to continue on to the next screen and ensure that your survey response is recorded. Thank you!',
     font: 'Helvetica',
     units: undefined, 
-    pos: [0, 0], height: 0.075,  wrapWidth: undefined, ori: 0.0,
+    pos: [0, 0], height: 0.05,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: 0.0 
   });

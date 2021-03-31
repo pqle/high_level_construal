@@ -20,7 +20,7 @@
     <Param name="Save psydat file" updates="None" val="True" valType="bool"/>
     <Param name="Save wide csv file" updates="None" val="True" valType="bool"/>
     <Param name="Screen" updates="None" val="1" valType="num"/>
-    <Param name="Show info dlg" updates="None" val="True" valType="bool"/>
+    <Param name="Show info dlg" updates="None" val="False" valType="bool"/>
     <Param name="Show mouse" updates="None" val="False" valType="bool"/>
     <Param name="Units" updates="None" val="height" valType="str"/>
     <Param name="Use version" updates="None" val="" valType="str"/>
@@ -497,17 +497,17 @@
       </CodeComponent>
     </Routine>
     <Routine name="end">
-      <TextComponent name="end_text">
+      <TextComponent name="debrief_text1">
         <Param name="color" updates="constant" val="white" valType="color"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="contrast" updates="constant" val="1" valType="num"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="10" valType="num"/>
+        <Param name="durationEstim" updates="None" val="" valType="num"/>
         <Param name="flip" updates="constant" val="None" valType="str"/>
-        <Param name="font" updates="constant" val="Helvetica" valType="str"/>
+        <Param name="font" updates="constant" val="Open Sans" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.075" valType="num"/>
-        <Param name="name" updates="None" val="end_text" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="num"/>
+        <Param name="name" updates="None" val="debrief_text1" valType="code"/>
         <Param name="opacity" updates="constant" val="" valType="num"/>
         <Param name="ori" updates="constant" val="0" valType="num"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="list"/>
@@ -516,9 +516,9 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="num"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="end_text_duration" valType="num"/>
+        <Param name="stopVal" updates="constant" val="10" valType="num"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="Below is more information about the purpose of this survey. After reviewing this information to your satisfaction, continue on to the next screen to ensure that your survey response is recorded. Thank you!&amp;#10; &amp;#10;&amp;#10;Thank you for your participation. Research in psychology couldn't be done without the help of people like you, so we really appreciate you taking the time to be in our experiment.  We are examining the influence of mental representations on how people behave in situations requiring self-control.  For example, in previous experiments in our lab, we found that mental representations that cause people to think more globally and &quot;big picture&quot; (high-level construals) lead to greater self-control as compared to representations that cause thinking in a more local, &quot;seeing the trees instead of the forest&quot; manner (low-level construals). In this study, you completed tasks designed to evoke either a high-level or low-level mindset. You then answered a variety of questions about your behavioral description preferences. We expect that the condition you were assigned to may have impacted some of the answers you provided. &amp;#10;Your data will remain confidential. Data are kept in locked areas. Your de-identified information may be used or shared with other researchers without your additional informed consent.&amp;#10;We ask that you do not discuss this study with others to maintain the integrity of the study, as it will be continuing.  We would like to thank you in advance for your help. If you have any questions about this study, please contact Kentaro Fujita (fujita.5@osu.edu).  If you have questions or concerns about your rights as a research participant, contact Sandra Meadows at The Office of Responsible Research Practices, 1-800-678-6251 or 1-614-688-4792 (see also their website at http://www.orrp.osu.edu/).&amp;#10;&amp;#10;Please continue on to the next screen to ensure that your survey response is recorded. Thank you!" valType="str"/>
+        <Param name="text" updates="constant" val="The next pages provide information about the purpose of this survey. After reviewing this information to your satisfaction, you will receive a code to submit your survey response. Thank you!&amp;#10;&amp;#10;Press the space bar to continue." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="num"/>
       </TextComponent>
