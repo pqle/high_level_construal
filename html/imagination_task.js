@@ -1,4 +1,4 @@
-/************************* 
+﻿/************************* 
  * Imagination_Task Test *
  *************************/
 
@@ -31,6 +31,46 @@ let expName = 'imagination_task';  // from the Builder filename that created thi
 let expInfo = {'workerId': '', 'assignmentId': '', 'hitId': ''};
 
 // Start code blocks for 'Before Experiment'
+import * as random from 'random';
+var _pj;
+var MturkCODE, MturkNUMCODE, conditions_file_name, end_text_duration, rating_keys, start_text_duration;
+
+function _pj_snippets(container) {
+    function in_es6(left, right) {
+        if (((right instanceof Array) || ((typeof right) === "string"))) {
+            return (right.indexOf(left) > (- 1));
+        } else {
+            if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {
+                return right.has(left);
+            } else {
+                return (left in right);
+            }
+        }
+    }
+    container["in_es6"] = in_es6;
+    return container;
+}
+_pj = {};
+_pj_snippets(_pj);
+conditions_file_name = os.path.join("conditions", "choose_condition.csv");
+start_text_duration = 120;
+end_text_duration = 10;
+rating_keys = ["5", "6", "7", "8", "9"];
+
+var rating;
+function convert_key_to_rating(key) {
+    var rating;
+    rating = null;
+    if (_pj.in_es6(key, rating_keys)) {
+        rating = Number.parseInt(key);
+        rating = (rating - 4);
+    }
+    return rating;
+}
+MturkNUMCODE = random.randint(0, 999999999);
+MturkCODE = (("Your Mturk completion code is: " + MturkNUMCODE.toString()) + ". Please press the space bar to ensure your survey response is recorded. Thank you!");
+expInfo["MturkCODE"] = MturkNUMCODE;
+
 // schedule the experiment:
 psychoJS.schedule(psychoJS.gui.DlgFromDict({
   dictionary: expInfo,
@@ -104,11 +144,6 @@ function updateInfo() {
 
 
 var setupClock;
-var _pj;
-var conditions_file_name;
-var start_text_duration;
-var end_text_duration;
-var rating_keys;
 var instructionsClock;
 var instruction;
 var key_resp;
@@ -155,59 +190,6 @@ var routineTimer;
 function experimentInit() {
   // Initialize components for Routine "setup"
   setupClock = new util.Clock();
-  var _pj;
-  function _pj_snippets(container) {
-      function in_es6(left, right) {
-          if (((right instanceof Array) || ((typeof right) === "string"))) {
-              return (right.indexOf(left) > (- 1));
-          } else {
-              if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {
-                  return right.has(left);
-              } else {
-                  return (left in right);
-              }
-          }
-      }
-      container["in_es6"] = in_es6;
-      return container;
-  };
-  _pj = {};
-  _pj_snippets(_pj);
-  conditions_file_name = "choose_condition.csv";
-  
-  //if (is_first) {
-  //    start_text_str = "Calibrating scanner";
-  start_text_duration = 120;
-  //    end_text_str = "The task has ended. The next task will start in a few seconds.";
-  end_text_duration = 10;
-  //} else {
-  //    start_text_str = "";
-  //    start_text_duration = 0.1;
-  //   end_text_str = "The task has ended. Waiting for researcher to start next task.";
-  //    end_text_duration = 120;
-  //}
-  //if ((expInfo["session"] === "0")) {
-  //    conditions_file_name = "choose_condition_practice.csv";
-  //    scenario_trials_selection = [0];
-  //    action_trials_selection = [0, 1, 2];
-  //    start_text_str = "Practice for construal level task";
-  //}
-  
-  rating_keys = ["5", "6", "7", "8", "9"];
-  
-  function convert_key_to_rating(key) {
-      var rating = null;
-      if (_pj.in_es6(key, rating_keys)) {
-          rating = Number.parseInt(key);
-          rating = (rating - 4);
-      };
-      return rating;
-  };
-  
-  var MturkNUMCODE = Math.floor(Math.random() * 999999999) + 1; 
-  var MturkCODE = "Your Mturk completion code is: " + MturkNUMCODE + ". Please press the space bar to ensure your survey response is recorded. Thank you!"
-  
-  expInfo["MturkCODE"] = MturkNUMCODE
   // Initialize components for Routine "instructions"
   instructionsClock = new util.Clock();
   instruction = new visual.TextStim({
